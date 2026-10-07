@@ -1,0 +1,75 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+
+    min-height: 48px;
+    padding: 0 1.5rem;
+
+    border: 1px solid transparent;
+    border-radius: 999px;
+
+    font: 600 0.875rem/1 var(--font-body);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 3px;
+}
+
+/* Gold */
+.btn-gold {
+    color: #111820;
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+/* WhatsApp */
+.btn-whatsapp {
+    color: var(--white);
+    background: rgba(5, 13, 20, 0.45);
+    border-color: var(--whatsapp);
+}
+
+.btn-whatsapp svg {
+    color: var(--whatsapp);
+}
+
+/* Hover only on devices that can hover (avoids sticky hover on touch) */
+@media (hover: hover) {
+    .btn-gold:hover {
+        background: var(--gold-light);
+        border-color: var(--gold-light);
+        transform: translateY(-2px);
+    }
+
+    .btn-whatsapp:hover {
+        background: rgba(37, 211, 102, 0.15);
+        transform: translateY(-2px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn {
+        transition: none;
+    }
+
+    .btn:hover {
+        transform: none;
+    }
+}

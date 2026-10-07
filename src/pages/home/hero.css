@@ -1,0 +1,220 @@
+/* =========================================================
+   HERO
+   Layers: photo (background) -> overlay (::before) -> content
+   ========================================================= */
+
+.hero {
+    position: relative;
+    isolation: isolate; /* keeps the ::before z-index inside the hero */
+
+    display: flex;
+    align-items: center;
+
+    min-height: clamp(460px, 68vh, 680px);
+    padding: clamp(48px, 7vw, 88px) var(--page-padding);
+
+    background: var(--dark) url("../../assets/hero.png") center right / cover no-repeat;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(
+        90deg,
+        rgba(5, 13, 20, 0.94) 0%,
+        rgba(5, 13, 20, 0.82) 32%,
+        rgba(5, 13, 20, 0.45) 58%,
+        rgba(5, 13, 20, 0.05) 85%
+    );
+}
+
+.hero-content {
+    width: min(100%, 600px);
+}
+
+/* ---------- Eyebrow ---------- */
+
+.hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin: 0 0 16px;
+
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.hero-eyebrow::after {
+    content: "";
+    flex-shrink: 0;
+    width: 56px;
+    height: 2px;
+    background: var(--gold);
+}
+
+/* ---------- Title + tagline ---------- */
+
+.hero-title {
+    margin: 0;
+
+    color: var(--gold);
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 1.2rem + 5.2vw, 4.75rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-wrap: balance;
+}
+
+.hero-tagline {
+    margin: 12px 0 24px;
+
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: clamp(1.375rem, 1rem + 1.6vw, 2.25rem);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+/* ---------- Meta row ---------- */
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 0;
+
+    margin-bottom: 32px;
+
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.hero-location,
+.hero-services {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.hero-location {
+    margin-right: 20px;
+    padding-right: 20px;
+    border-right: 1px solid rgba(241, 200, 120, 0.45);
+}
+
+.hero-meta svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--gold);
+}
+
+/* ---------- Actions ---------- */
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* =========================================================
+   TABLET (<= 992px): text covers more of the photo,
+   so the overlay is stronger and spans the full width
+   ========================================================= */
+
+@media (max-width: 992px) {
+    .hero {
+        min-height: clamp(440px, 60vh, 560px);
+        background-position: 72% center;
+    }
+
+    .hero::before {
+        background: linear-gradient(
+            90deg,
+            rgba(5, 13, 20, 0.95) 0%,
+            rgba(5, 13, 20, 0.85) 45%,
+            rgba(5, 13, 20, 0.5) 75%,
+            rgba(5, 13, 20, 0.25) 100%
+        );
+    }
+}
+
+/* =========================================================
+   PHONE (<= 600px): photo on top, text anchored below,
+   height is driven by content (safe for Tamil text later)
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .hero {
+        min-height: 0;
+        align-items: flex-end;
+
+        /* top padding reserves space for the photo */
+        padding-top: 180px;
+        padding-bottom: 36px;
+
+        background-position: 62% top;
+    }
+
+    .hero::before {
+        background: linear-gradient(
+            180deg,
+            rgba(5, 13, 20, 0.1) 0%,
+            rgba(5, 13, 20, 0.4) 28%,
+            rgba(5, 13, 20, 0.9) 50%,
+            var(--dark) 100%
+        );
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-eyebrow {
+        gap: 10px;
+        font-size: 0.6875rem;
+        letter-spacing: 0.22em;
+    }
+
+    .hero-eyebrow::after {
+        width: 32px;
+    }
+
+    .hero-tagline {
+        margin-bottom: 20px;
+    }
+
+    .hero-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 24px;
+        font-size: 0.875rem;
+    }
+
+    .hero-location {
+        margin-right: 0;
+        padding-right: 0;
+        border-right: none;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+}
