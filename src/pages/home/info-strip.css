@@ -1,0 +1,112 @@
+.info-strip {
+    background: var(--dark-2);
+    border-block: 1px solid rgba(241, 200, 120, 0.35);
+}
+
+/* Same horizontal padding as header and hero */
+.info-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-inline: var(--page-padding);
+}
+
+.info-item {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    min-width: 0;
+    min-height: 76px;
+    padding: 14px clamp(16px, 2.5vw, 40px);
+
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* First and last items sit flush with the page edges */
+.info-item:first-child {
+    padding-left: 0;
+}
+
+.info-item:last-child {
+    padding-right: 0;
+}
+
+/* Vertical dividers */
+.info-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+
+    width: 1px;
+    height: 36px;
+    transform: translateY(-50%);
+
+    background: rgba(241, 200, 120, 0.45);
+}
+
+.info-item>svg {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    color: var(--gold);
+    stroke-width: 1.8;
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.info-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+}
+
+.info-subtitle {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--text-subtle);
+}
+
+/* Link item (phone) */
+a.info-item:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+@media (hover: hover) {
+    a.info-item:hover .info-title {
+        color: var(--gold);
+    }
+}
+
+/* Stack at the same breakpoint the header switches to the hamburger */
+@media (max-width: 840px) {
+    .info-strip-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .info-item {
+        min-height: 0;
+        padding: 16px 0;
+    }
+
+    /* Vertical dividers become horizontal */
+    .info-item:not(:last-child)::after {
+        inset: auto 0 0 0;
+        width: auto;
+        height: 1px;
+        transform: none;
+        background: rgba(241, 200, 120, 0.2);
+    }
+}
+
