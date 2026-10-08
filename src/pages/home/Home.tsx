@@ -1,12 +1,13 @@
 import { Hero } from "./Hero";
 import { InfoStrip } from "./InfoStrip";
 
-export function Home(){
+export function Home() {
 
-    return(
+    return (
         <>
-          <Hero />  
-          <InfoStrip />  
+            <title>Home</title>
+            <Hero />
+            <InfoStrip />
         </>
     );
 
