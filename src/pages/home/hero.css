@@ -161,17 +161,18 @@
         align-items: flex-end;
 
         /* top padding reserves space for the photo */
-        padding-top: 180px;
+       padding-top: 70px;
         padding-bottom: 36px;
 
-        background-position: 62% top;
+        background: var(--dark) url("../../assets/hero-mobile.png") center right / cover no-repeat;
+        background-position: 0% top;
     }
 
     .hero::before {
         background: linear-gradient(
             180deg,
-            rgba(5, 13, 20, 0.1) 0%,
-            rgba(5, 13, 20, 0.4) 28%,
+            rgba(5, 13, 20, 0.8) 0%,
+            rgba(5, 13, 20, 0.3) 28%,
             rgba(5, 13, 20, 0.9) 50%,
             var(--dark) 100%
         );

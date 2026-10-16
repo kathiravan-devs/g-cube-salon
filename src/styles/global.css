@@ -22,9 +22,13 @@
     box-sizing: border-box;
 }
 
-html {
+/* html {
     scrollbar-width: thin;
     scrollbar-color: var(--gold-dark) var(--dark);
+} */
+html {
+    scrollbar-width: none;
+    scrollbar-color: none;
 }
 
 body {

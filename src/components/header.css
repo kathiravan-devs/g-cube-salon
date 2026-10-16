@@ -329,7 +329,7 @@ body {
 
 
 /* Phones: appointment button becomes icon-only */
-@media (max-width: 600px) {
+@media (max-width: 698px) {
     .site-header {
         padding: 0 16px;
     }

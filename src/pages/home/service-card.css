@@ -1,0 +1,284 @@
+.service-section {
+  padding: 20px 60px;
+  /* no overflow: hidden here, the card row bleeds to the screen edges */
+}
+
+/* ---------- Header ---------- */
+
+.service-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px 24px;
+  margin-bottom: 28px;
+}
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.section-eyebrow::after {
+  content: "";
+  flex-shrink: 0;
+  width: 56px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.service-heading h2 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.875rem, 1.2rem + 2.4vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.service-heading p {
+  margin: 10px 0 0;
+  max-width: 52ch;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ---------- Men / Women toggle ---------- */
+
+.service-tabs {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(241, 200, 120, 0.45);
+  border-radius: 999px;
+}
+
+.service-tabs button {
+  min-width: 88px;
+  min-height: 40px;
+  padding: 0 22px;
+
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--white);
+
+  font: 600 0.8125rem/1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.service-tabs button[aria-pressed="true"] {
+  background: var(--gold);
+  color: #111820;
+}
+
+.service-tabs button:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 2px;
+}
+
+/* ---------- Card row (one row, scrolls sideways when it can't fit) ---------- */
+
+.service-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+
+  /* bleed to the screen edges; the first card still lines up with the heading */
+  margin: 0 calc(var(--page-padding) * -1);
+  padding-block: 10px 20px;
+  /* room for the hover lift and the focus ring */
+  padding-inline: var(--page-padding);
+  scroll-padding-inline: var(--page-padding);
+  list-style: none;
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  /* swiping the row doesn't trigger browser "back" */
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dark) transparent;
+}
+
+.service-card {
+  position: relative;
+  /* anchors the stretched link */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  /* 70vw on phones, so the next card peeks in and says "swipe";
+       capped at 280px on tablets and laptops */
+  flex: 1 0 clamp(220px, 70vw, 280px);
+  scroll-snap-align: start;
+
+  padding: 22px 18px;
+  border: 1px solid rgba(241, 200, 120, 0.35);
+  border-radius: 10px;
+  background: var(--dark-2);
+
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.service-card-icon {
+  width: 52px;
+  height: 52px;
+  padding: 13px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  color: var(--gold);
+  stroke-width: 1.5;
+}
+
+.service-card-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.service-card-summary {
+  margin: 0;
+  color: var(--text-subtle);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* auto top margin pins the price to the card bottom, so prices line up */
+.service-card-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: auto 0 0;
+  padding-top: 8px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* One link per card: the title link stretches over the whole card */
+.service-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.service-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.service-card-link:focus-visible {
+  outline: none;
+  /* the ring goes on the card instead */
+}
+
+.service-card:has(.service-card-link:focus-visible) {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+.service-card-price svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (hover: hover) {
+  .service-card:hover .service-card-price svg {
+    transform: translateX(3px);
+  }
+}
+
+/* ---------- Footer link ---------- */
+
+.service-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  text-decoration: none;
+}
+
+.service-card-price svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   Three states: scrolling row (default), header stacked (<=640),
+   all seven cards in one row (>=1440)
+   ========================================================= */
+
+/* Phones: stack the header, full-width tabs with 44px touch targets */
+@media (max-width: 640px) {
+  .service-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .service-tabs {
+    display: flex;
+  }
+
+  .service-tabs button {
+    flex: 1;
+    min-height: 44px;
+  }
+
+  .section-eyebrow {
+    gap: 10px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+  }
+
+  .section-eyebrow::after {
+    width: 32px;
+  }
+}
+
+/* Wide screens: all seven share the row, nothing scrolls.
+   At 1440px each card is about 170px wide, so keep the text compact. */
+@media (min-width: 1440px) {
+  .service-card {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 20px 16px;
+  }
+
+  .service-card-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .service-tabs button,
+  .service-card {
+    transition: none;
+  }
+
+  .service-card-price svg {
+    transition: none;
+  }
+
+  .service-card:hover .service-card-price svg {
+    transform: none;
+  }
+}

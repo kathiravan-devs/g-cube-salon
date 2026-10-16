@@ -50,6 +50,15 @@
     color: var(--whatsapp);
 }
 
+/* Gold outline.
+   No `svg` color rule on purpose: the icon uses currentColor, so it follows
+   the button's text color (gold, then dark on hover). */
+.btn-gold-outline {
+    color: var(--gold);
+    background: rgba(5, 13, 20, 0.45);
+    border-color: var(--gold);
+}
+
 /* Hover only on devices that can hover (avoids sticky hover on touch) */
 @media (hover: hover) {
     .btn-gold:hover {
@@ -60,6 +69,12 @@
 
     .btn-whatsapp:hover {
         background: rgba(37, 211, 102, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .btn-gold-outline:hover {
+        background: var(--gold);
+        color: #111820;
         transform: translateY(-2px);
     }
 }
