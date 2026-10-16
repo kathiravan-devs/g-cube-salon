@@ -28,8 +28,8 @@
 } */
 html {
     scrollbar-width: none;
-    scrollbar-color: none;
 }
+html::
 
 body {
     margin: 0;
