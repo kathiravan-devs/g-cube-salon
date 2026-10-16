@@ -1,8 +1,7 @@
 .service-section {
-  padding: 20px 60px;
+  padding: 20px var(--side-padding);
   /* no overflow: hidden here, the card row bleeds to the screen edges */
 }
-
 /* ---------- Header ---------- */
 
 .service-header {

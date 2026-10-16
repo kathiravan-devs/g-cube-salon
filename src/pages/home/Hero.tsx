@@ -3,13 +3,14 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { salon, whatsappLink } from "../../data/salon";
 import "./hero.css";
-import "../../styles/global.css";
 import "../../styles/buttons.css";
 
 export function Hero() {
     return (
         <section className="hero" aria-labelledby="hero-title">
+
             <div className="hero-content">
+
                 <p className="hero-eyebrow">Premium Unisex Salon</p>
 
                 <h1 id="hero-title" className="hero-title">
@@ -43,8 +44,11 @@ export function Hero() {
                         <FaWhatsapp aria-hidden="true" />
                         WhatsApp
                     </a>
+
                 </div>
+
             </div>
+            
         </section>
     );
 }
