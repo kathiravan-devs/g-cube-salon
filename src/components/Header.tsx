@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { salon } from "../data/salon";
 import { Phone, CalendarDays, Menu, X } from "lucide-react";
 import './header.css'
 
@@ -29,9 +30,9 @@ export function Header() {
             </nav>
 
             <div className="header-actions">
-                <a href="tel:+918438328069" className="phone-button" aria-label="Call G Cube Salon">
+                <a href={salon.phoneHref} className="phone-button" aria-label="Call G Cube Salon">
                     <Phone />
-                    <span>+91 84383 28069</span>
+                    <span>{salon.phone}</span>
                 </a>
 
                 <button className="appointment-button" aria-label="Book Appointment">

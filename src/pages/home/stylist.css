@@ -1,0 +1,162 @@
+/* Stylist section
+   Uses existing tokens: --dark, --dark-2, --white, --gold, --gold-dark,
+   --text-muted, --font-heading, --side-padding */
+
+.stylist-section {
+    /* Match the vertical padding of your other sections */
+    padding: clamp(3rem, 6vw, 5rem) var(--side-padding);
+    /* If the neighbouring section uses the same shade, swap to var(--dark) */
+    background: var(--dark-2);
+    color: var(--white);
+}
+
+/* Header */
+.stylist-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.stylist-heading {
+    margin: 0;
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+/* Photo + info */
+.stylist-content {
+    display: grid;
+    grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+}
+
+/* Photo with an offset gold frame (the one decorative detail) */
+.stylist-image {
+    position: relative;
+    padding: 0 1rem 1rem 0; /* room for the frame, keeps it inside the layout */
+}
+
+.stylist-image::before {
+    content: '';
+    position: absolute;
+    inset: 1rem 0 0 1rem;
+    border: 1px solid var(--gold-dark);
+    border-radius: 6px;
+}
+
+.stylist-image img {
+    position: relative; /* sits above the frame */
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 6px;
+    background: var(--dark); /* visible while the lazy image loads */
+}
+
+/* Info */
+.stylist-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    min-width: 0;
+}
+
+.stylist-name {
+    margin: 0;
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.stylist-description {
+    margin: 0;
+    max-width: 60ch;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* Call button
+   Scoped under .stylist-info: plain CSS is global in React,
+   so a bare .phone-button could collide with another component. */
+.stylist-info .phone-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    margin-top: 0.5rem;
+    padding: 0 1.5rem;
+    background: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    color: var(--dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    font-variant-numeric: tabular-nums;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.stylist-info .phone-button svg {
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.stylist-info .phone-button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+}
+
+/* Hover only where a real pointer exists, so it doesn't stick after a tap */
+@media (hover: hover) {
+    .stylist-info .phone-button:hover {
+        background: transparent;
+        color: var(--gold);
+    }
+}
+
+/* Tablet: smaller photo column */
+@media (max-width: 900px) {
+    .stylist-content {
+        grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+    }
+}
+
+/* Mobile: stacked, full-width call button */
+@media (max-width: 600px) {
+    .stylist-header {
+        margin-bottom: 1.75rem;
+    }
+
+    .stylist-content {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.75rem;
+    }
+
+    .stylist-image {
+        max-width: 24rem;
+    }
+
+    .stylist-info .phone-button {
+        align-self: stretch;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .stylist-info .phone-button {
+        transition: none;
+    }
+}

@@ -1,4 +1,4 @@
-import { FaGoogle, FaQuoteLeft, FaStar } from 'react-icons/fa'
+import { FaQuoteLeft, FaStar } from 'react-icons/fa'
 import { ArrowRight } from 'lucide-react'
 import { reviews } from './../../data/reviews'
 import './reviews.css'
@@ -115,7 +115,7 @@ export function Reviews() {
                                             {review.name}
                                         </span>
                                         <span className="review-card__source">
-                                            <FaGoogle aria-hidden="true" className='google-icon'/>
+                                            <img src="./images/google.png" alt="G" aria-hidden="true"  className='google-icon'/>
                                             Posted on {review.source}
                                         </span>
                                     </span>
