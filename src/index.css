@@ -1,20 +1,32 @@
 :root {
+    /* ---------- Fonts ---------- */
     --font-heading: "Cormorant Garamond", serif;
     --font-body: "Montserrat", sans-serif;
 
-    --dark: #050d14;
-    --dark-2: #07121a;
-    --white: #ffffff;
-    --gold: #f1c878;
-    --gold-light: #ffe0a0;
-    --gold-dark: #a8844a;
-    --text-subtle: rgba(255, 255, 255, 0.65);
+    /* ---------- Surfaces ---------- */
+    --dark: #080808;          /* page background */
+    --dark-rgb: 8, 8, 8;      /* same colour, for overlays: rgba(var(--dark-rgb), 0.8) */
+    --dark-2: #151515;        /* cards, info strip, footer (charcoal) */
+
+    /* ---------- Text ---------- */
+    --white: #ffffff;                       /* headings, primary text */
     --text-muted: rgba(255, 255, 255, 0.85);
+    --text-subtle: rgba(255, 255, 255, 0.65);  /* about 8:1 on --dark, safe for body text */
+
+    /* ---------- Accent (white is the only accent) ---------- */
+    --accent: #ffffff;        /* primary button fill, active tab, icons, links */
+    --accent-hover: #e0e0e0;  /* hover on the white fill */
+    --accent-dim: #8a8a8a;    /* scrollbar thumb, quiet details (about 5.8:1, readable) */
+
+    /* ---------- Borders and dividers ---------- */
+    --line: rgba(255, 255, 255, 0.22);
+    --line-strong: rgba(255, 255, 255, 0.5);
+
+    /* ---------- Brand colour (icon only) ---------- */
     --whatsapp: #25d366;
 
-    /* One fluid value for every section. Do NOT override in media queries. */
+    /* ---------- Layout ---------- */
     --page-padding: clamp(20px, 5vw, 72px);
-    --side-padding: 60px;
 }
 
 *,
