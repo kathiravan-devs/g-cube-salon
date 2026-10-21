@@ -25,9 +25,9 @@ body {
 
     padding: 0 48px;
 
-    background: #050d14;
+    background: var(--dark);
 
-    border-bottom: 1px solid #a8844a;
+    border-bottom: 1px solid var(--accent-dim);
 
     position: sticky;
     top: 0;
@@ -59,7 +59,7 @@ body {
 }
 
 .brand-name {
-    color: #f1c878;
+    color: var(--accent);
 
     font-family: var(--font-heading);
 
@@ -88,7 +88,7 @@ body {
 .nav-link {
     position: relative;
 
-    color: #f2f2f2;
+    color: var(--white);
 
     text-decoration: none;
 
@@ -103,14 +103,14 @@ body {
 }
 
 .nav-link:hover {
-    color: #f1c878;
+    color: var(--accent);
 }
 
 
 /* Active navigation */
 
 .nav-link.active {
-    color: #f1c878;
+    color: var(--accent);
 }
 
 .nav-link.active::after {
@@ -124,7 +124,7 @@ body {
 
     height: 2px;
 
-    background: #f1c878;
+    background: var(--accent);
 }
 
 
@@ -152,10 +152,10 @@ body {
 
     padding: 0 17px;
 
-    border: 1px solid #c79a50;
+    border: 1px solid var(--accent-dim);
     border-radius: 22px;
 
-    color: #ffffff;
+    color: var(--white);
 
     text-decoration: none;
 
@@ -167,9 +167,9 @@ body {
 }
 
 .phone-button:hover {
-    background: #c79a50;
+    background: var(--accent-dim);
     font-weight: 500;
-    color: #050d14;
+    color: var(--dark);
 }
 
 .phone-button svg {
@@ -191,8 +191,8 @@ body {
     border: none;
     border-radius: 22px;
 
-    background: #f2c875;
-    color: #111820;
+    background: var(--accent);
+    color: var(--dark);
 
     font-size: 14px;
     font-weight: 600;
@@ -209,7 +209,7 @@ body {
     stroke-width: 2.3;
 }
 .appointment-button:hover {
-    background: #ffe0a0;
+    background: var(--accent-hover);
     transform: translateY(-1px);
 }
 
@@ -223,9 +223,9 @@ body {
     justify-content: center;
     padding: 0;
     background: transparent;
-    border: 1px solid #c79a50;
+    border: 1px solid var(--accent-dim);
     border-radius: 50%;
-    color: #f1c878;
+    color: var(--accent);
     cursor: pointer;
 }
 
@@ -303,8 +303,8 @@ body {
         margin: 0;
         padding: 8px 24px 16px;
 
-        background: #050d14;
-        border-bottom: 1px solid #a8844a;
+        background: var(--dark);
+        border-bottom: 1px solid var(--accent-dim);
     }
 
     .main-nav.open {
@@ -314,7 +314,7 @@ body {
     .nav-link {
         padding: 16px 0;
         font-size: 16px;
-        border-bottom: 1px solid rgba(168, 132, 74, 0.25);
+        border-bottom: 1px solid var(--line);
     }
 
     .nav-link:last-child {

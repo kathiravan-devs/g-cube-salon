@@ -13,7 +13,7 @@ export function Header() {
             <div className="header-brand">
                 <Link to="/" className="brand-link" onClick={closeMenu}>
                     <img
-                        src="/logo/logo-gold.png"
+                        src="/logo/logo.png"
                         alt="G Cube Salon logo"
                         className="brand-logo"
                     />

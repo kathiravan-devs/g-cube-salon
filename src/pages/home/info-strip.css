@@ -1,6 +1,6 @@
 .info-strip {
     background: var(--dark-2);
-    border-block: 1px solid rgba(241, 200, 120, 0.35);
+    border-block: 1px solid var(--line);
 }
 
 /* Same horizontal padding as header and hero */
@@ -45,14 +45,14 @@
     height: 36px;
     transform: translateY(-50%);
 
-    background: rgba(241, 200, 120, 0.45);
+    background: var(--line-strong);
 }
 
 .info-item>svg {
     flex-shrink: 0;
     width: 26px;
     height: 26px;
-    color: var(--gold);
+    color: var(--accent);
     stroke-width: 1.8;
 }
 
@@ -78,14 +78,14 @@
 
 /* Link item (phone) */
 a.info-item:focus-visible {
-    outline: 2px solid var(--gold-light);
+    outline: 2px solid var(--accent-hover);
     outline-offset: 4px;
     border-radius: 4px;
 }
 
 @media (hover: hover) {
     a.info-item:hover .info-title {
-        color: var(--gold);
+        color: var(--accent);
     }
 }
 
@@ -106,7 +106,7 @@ a.info-item:focus-visible {
         width: auto;
         height: 1px;
         transform: none;
-        background: rgba(241, 200, 120, 0.2);
+        background: var(--line);
     }
 }
 
