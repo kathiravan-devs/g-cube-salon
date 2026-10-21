@@ -31,7 +31,7 @@ export function Hero() {
 
                 <div className="hero-actions">
                     {/* /contact is a placeholder until booking is designed */}
-                    <Link to="/contact" className="btn btn-gold">
+                    <Link to="/contact" className="btn btn-primary">
                         <CalendarDays aria-hidden="true" />
                         Book Appointment
                     </Link>

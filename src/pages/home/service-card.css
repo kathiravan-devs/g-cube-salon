@@ -1,5 +1,5 @@
 .service-section {
-  padding: 20px var(--side-padding);
+  padding: 20px var(--page-padding);
   /* no overflow: hidden here, the card row bleeds to the screen edges */
 }
 /* ---------- Header ---------- */
@@ -19,7 +19,7 @@
   gap: 16px;
   margin-bottom: 10px;
 
-  color: var(--gold);
+  color: var(--accent);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.3em;
@@ -31,7 +31,7 @@
   flex-shrink: 0;
   width: 56px;
   height: 2px;
-  background: var(--gold);
+  background: var(--accent);
 }
 
 .service-heading h2 {
@@ -58,7 +58,7 @@
   flex-shrink: 0;
   gap: 4px;
   padding: 4px;
-  border: 1px solid rgba(241, 200, 120, 0.45);
+  border: 1px solid var(--line-strong);
   border-radius: 999px;
 }
 
@@ -81,12 +81,12 @@
 }
 
 .service-tabs button[aria-pressed="true"] {
-  background: var(--gold);
-  color: #111820;
+  background: var(--accent);
+  color: var(--dark);
 }
 
 .service-tabs button:focus-visible {
-  outline: 2px solid var(--gold-light);
+  outline: 2px solid var(--accent-hover);
   outline-offset: 2px;
 }
 
@@ -110,7 +110,7 @@
   /* swiping the row doesn't trigger browser "back" */
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
-  scrollbar-color: var(--gold-dark) transparent;
+  scrollbar-color: var(--accent-dim) transparent;
 }
 
 .service-card {
@@ -126,7 +126,7 @@
   scroll-snap-align: start;
 
   padding: 22px 18px;
-  border: 1px solid rgba(241, 200, 120, 0.35);
+  border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--dark-2);
 
@@ -137,9 +137,9 @@
   width: 52px;
   height: 52px;
   padding: 13px;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--accent);
   border-radius: 50%;
-  color: var(--gold);
+  color: var(--accent);
   stroke-width: 1.5;
 }
 
@@ -165,7 +165,7 @@
   gap: 8px;
   margin: auto 0 0;
   padding-top: 8px;
-  color: var(--gold);
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -187,7 +187,7 @@
 }
 
 .service-card:has(.service-card-link:focus-visible) {
-  outline: 2px solid var(--gold-light);
+  outline: 2px solid var(--accent-hover);
   outline-offset: 3px;
 }
 

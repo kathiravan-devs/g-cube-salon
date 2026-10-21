@@ -28,21 +28,21 @@
 }
 
 .btn:focus-visible {
-    outline: 2px solid var(--gold-light);
+    outline: 2px solid var(--accent-hover);
     outline-offset: 3px;
 }
 
-/* Gold */
-.btn-gold {
-    color: #111820;
-    background: var(--gold);
-    border-color: var(--gold);
+/* Primary */
+.btn-primary {
+    color: var(--dark);
+    background: var(--accent);
+    border-color: var(--accent);
 }
 
 /* WhatsApp */
 .btn-whatsapp {
     color: var(--white);
-    background: rgba(5, 13, 20, 0.45);
+    background: rgba(var(--dark-rgb), 0.45);
     border-color: var(--whatsapp);
 }
 
@@ -50,20 +50,20 @@
     color: var(--whatsapp);
 }
 
-/* Gold outline.
+/* Primary outline.
    No `svg` color rule on purpose: the icon uses currentColor, so it follows
-   the button's text color (gold, then dark on hover). */
-.btn-gold-outline {
-    color: var(--gold);
-    background: rgba(5, 13, 20, 0.45);
-    border-color: var(--gold);
+   the button's text color (accent, then dark on hover). */
+.btn-primary-outline {
+    color: var(--accent);
+    background: rgba(var(--dark-rgb), 0.45);
+    border-color: var(--accent);
 }
 
 /* Hover only on devices that can hover (avoids sticky hover on touch) */
 @media (hover: hover) {
-    .btn-gold:hover {
-        background: var(--gold-light);
-        border-color: var(--gold-light);
+    .btn-primary:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
         transform: translateY(-2px);
     }
 
@@ -72,9 +72,9 @@
         transform: translateY(-2px);
     }
 
-    .btn-gold-outline:hover {
-        background: var(--gold);
-        color: #111820;
+    .btn-primary-outline:hover {
+        background: var(--accent);
+        color: var(--dark);
         transform: translateY(-2px);
     }
 }

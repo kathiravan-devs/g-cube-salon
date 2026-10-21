@@ -24,10 +24,10 @@
 
     background: linear-gradient(
         90deg,
-        rgba(5, 13, 20, 0.94) 0%,
-        rgba(5, 13, 20, 0.82) 32%,
-        rgba(5, 13, 20, 0.45) 58%,
-        rgba(5, 13, 20, 0.05) 85%
+        rgba(var(--dark-rgb), 0.94) 0%,
+        rgba(var(--dark-rgb), 0.82) 32%,
+        rgba(var(--dark-rgb), 0.45) 58%,
+        rgba(var(--dark-rgb), 0.05) 85%
     );
 }
 
@@ -56,7 +56,7 @@
     flex-shrink: 0;
     width: 56px;
     height: 2px;
-    background: var(--gold);
+    background: var(--accent);
 }
 
 /* ---------- Title + tagline ---------- */
@@ -64,7 +64,7 @@
 .hero-title {
     margin: 0;
 
-    color: var(--gold);
+    color: var(--accent);
     font-family: var(--font-heading);
     font-size: clamp(2.25rem, 1.2rem + 5.2vw, 4.75rem);
     font-weight: 700;
@@ -110,14 +110,14 @@
 .hero-location {
     margin-right: 20px;
     padding-right: 20px;
-    border-right: 1px solid rgba(241, 200, 120, 0.45);
+    border-right: 1px solid var(--line-strong);
 }
 
 .hero-meta svg {
     width: 18px;
     height: 18px;
     flex-shrink: 0;
-    color: var(--gold);
+    color: var(--accent);
 }
 
 /* ---------- Actions ---------- */
@@ -142,10 +142,10 @@
     .hero::before {
         background: linear-gradient(
             90deg,
-            rgba(5, 13, 20, 0.95) 0%,
-            rgba(5, 13, 20, 0.85) 45%,
-            rgba(5, 13, 20, 0.5) 75%,
-            rgba(5, 13, 20, 0.25) 100%
+            rgba(var(--dark-rgb), 0.95) 0%,
+            rgba(var(--dark-rgb), 0.85) 45%,
+            rgba(var(--dark-rgb), 0.5) 75%,
+            rgba(var(--dark-rgb), 0.25) 100%
         );
     }
 }
@@ -171,9 +171,9 @@
     .hero::before {
         background: linear-gradient(
             180deg,
-            rgba(5, 13, 20, 0.8) 0%,
-            rgba(5, 13, 20, 0.3) 28%,
-            rgba(5, 13, 20, 0.9) 50%,
+            rgba(var(--dark-rgb), 0.8) 0%,
+            rgba(var(--dark-rgb), 0.3) 28%,
+            rgba(var(--dark-rgb), 0.9) 50%,
             var(--dark) 100%
         );
     }

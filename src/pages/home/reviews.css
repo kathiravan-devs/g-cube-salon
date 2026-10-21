@@ -1,7 +1,7 @@
 
 .reviews {
     position: relative;
-    padding: 30px var(--side-padding);
+    padding: 30px var(--page-padding);
     background: var(--dark);
     color: var(--white);
 }
@@ -11,7 +11,7 @@
     position: absolute;
     inset: 0 0 auto;
     height: 0.01rem;
-    background-color: var(--gold-dark);
+    background-color: var(--accent-dim);
 }
 /* Header */
 .reviews__header {
@@ -47,7 +47,7 @@
     align-items: center;
     gap: 0.5rem;
     flex-shrink: 0;
-    color: var(--gold);
+    color: var(--accent);
     font-size: 0.85rem;
     font-weight: 500;
     text-decoration: none;
@@ -103,7 +103,7 @@
 }
 
 .reviews-star--filled {
-    color:  #c27f00;
+    color: var(--accent);
 }
 
 /* Equal-width review cards in one row on desktop */
@@ -145,7 +145,7 @@
 
 .review-card__mark {
     flex-shrink: 0;
-    color: var(--gold-dark);
+    color: var(--accent-dim);
     font-size: 1rem;
 }
 
@@ -183,14 +183,10 @@
     font-size: 14px;
     font-weight: 600;
 }
-.profile-1{
-    background-color: #2f577c;
-}
-.profile-2{
-    background-color: #226942;
-}
-.profile-3{
-    background-color: #724f6a;
+.profile-1,
+.profile-2,
+.profile-3 {
+    background-color: var(--accent-dim);
 }
 .review-card__author-info {
     min-width: 0;

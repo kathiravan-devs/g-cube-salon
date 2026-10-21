@@ -103,7 +103,7 @@ export function OurServices() {
 
       
         <Link to={`/services?audience=${audience}`} className="service-footer">
-          <button className="btn btn-gold-outline">
+          <button className="btn btn-primary-outline">
             View all services &amp; pricing
             <ArrowRight aria-hidden="true" />
           </button>

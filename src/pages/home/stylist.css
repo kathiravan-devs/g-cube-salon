@@ -1,11 +1,11 @@
 
 /* Stylist section
-   Uses existing tokens: --dark, --dark-2, --white, --gold, --gold-dark,
-   --text-muted, --font-heading, --side-padding */
+   Uses existing tokens: --dark, --dark-2, --white, --accent, --accent-dim,
+   --text-muted, --font-heading, --page-padding */
 
 .stylist-section {
     position: relative;
-    padding: 30px var(--side-padding);
+    padding: 30px var(--page-padding);
     background: var(--dark-2);
     color: var(--white);
 }
@@ -15,7 +15,7 @@
     position: absolute;
     inset: 0 0 auto;
     height: 0.01rem;
-    background-color: var(--gold-dark);
+    background-color: var(--accent-dim);
 }
 
 /* Header */
@@ -44,7 +44,7 @@
     gap: clamp(2rem, 5vw, 4rem);
 }
 
-/* Photo with offset gold frame */
+/* Photo with offset accent frame */
 .stylist-image {
     position: relative;
     padding: 0 1rem 1rem 0;
@@ -54,7 +54,7 @@
     content: '';
     position: absolute;
     inset: 1rem 0 0 1rem;
-    border: 1px solid var(--gold-dark);
+    border: 1px solid var(--accent-dim);
     border-radius: 6px;
 }
 
@@ -95,7 +95,7 @@
     left: 2px;
     width: 50px;
     height: 0.2rem;
-    background-color: var(--gold-dark);
+    background-color: var(--accent-dim);
 }
 
 /* Stylist description */
@@ -126,7 +126,7 @@
 }
 
 .experience-number {
-    color: var(--gold);
+    color: var(--accent);
     font-family: var(--font-heading);
     font-size: 1.75rem;
     font-weight: 500;
@@ -150,8 +150,8 @@
     gap: 0.6rem;
     min-height: 2.75rem;
     padding: 0 1.5rem;
-    background: var(--gold);
-    border: 1px solid var(--gold);
+    background: var(--accent);
+    border: 1px solid var(--accent);
     border-radius: 6px;
     color: var(--dark);
     font-size: 0.9rem;
@@ -181,7 +181,7 @@
     min-height: 2.75rem;
     padding: 0 1.5rem;
     background: transparent;
-    border: 1px solid var(--gold-dark);
+    border: 1px solid var(--accent-dim);
     border-radius: 6px;
     color: var(--white);
     font-size: 0.9rem;
@@ -197,7 +197,7 @@
     flex-shrink: 0;
     width: 1.1rem;
     height: 1.1rem;
-    color: #25d366;
+    color: var(--whatsapp);
 }
 
 .stylist-info .whatsapp-button:focus-visible {
@@ -209,12 +209,12 @@
 @media (hover: hover) {
     .stylist-info .phone-button:hover {
         background: transparent;
-        color: var(--gold);
+        color: var(--accent);
     }
 
     .stylist-info .whatsapp-button:hover {
-        background: var(--gold);
-        border-color: var(--gold);
+        background: var(--accent);
+        border-color: var(--accent);
         color: var(--dark);
     }
 }
