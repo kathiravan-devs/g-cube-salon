@@ -1,13 +1,21 @@
+
 /* Stylist section
    Uses existing tokens: --dark, --dark-2, --white, --gold, --gold-dark,
    --text-muted, --font-heading, --side-padding */
 
 .stylist-section {
-    /* Match the vertical padding of your other sections */
-    padding: clamp(3rem, 6vw, 5rem) var(--side-padding);
-    /* If the neighbouring section uses the same shade, swap to var(--dark) */
+    position: relative;
+    padding: 30px var(--side-padding);
     background: var(--dark-2);
     color: var(--white);
+}
+
+.stylist-section::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 0.01rem;
+    background-color: var(--gold-dark);
 }
 
 /* Header */
@@ -36,10 +44,10 @@
     gap: clamp(2rem, 5vw, 4rem);
 }
 
-/* Photo with an offset gold frame (the one decorative detail) */
+/* Photo with offset gold frame */
 .stylist-image {
     position: relative;
-    padding: 0 1rem 1rem 0; /* room for the frame, keeps it inside the layout */
+    padding: 0 1rem 1rem 0;
 }
 
 .stylist-image::before {
@@ -51,17 +59,17 @@
 }
 
 .stylist-image img {
-    position: relative; /* sits above the frame */
+    position: relative;
     display: block;
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center top;
     border-radius: 6px;
-    background: var(--dark); /* visible while the lazy image loads */
+    background: var(--dark);
 }
 
-/* Info */
+/* Stylist information */
 .stylist-info {
     display: flex;
     flex-direction: column;
@@ -71,6 +79,7 @@
 }
 
 .stylist-name {
+    position: relative;
     margin: 0;
     color: var(--white);
     font-family: var(--font-heading);
@@ -79,24 +88,67 @@
     line-height: 1.2;
 }
 
+.stylist-name::after {
+    content: '';
+    position: absolute;
+    bottom: -9px;
+    left: 2px;
+    width: 50px;
+    height: 0.2rem;
+    background-color: var(--gold-dark);
+}
+
+/* Stylist description */
 .stylist-description {
-    margin: 0;
     max-width: 60ch;
+    margin: 0;
     color: var(--text-muted);
     font-size: 0.95rem;
     line-height: 1.8;
 }
 
-/* Call button
-   Scoped under .stylist-info: plain CSS is global in React,
-   so a bare .phone-button could collide with another component. */
+.stylist-description p {
+    margin: 0 0 1rem;
+}
+
+.stylist-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* Experience */
+.stylist-experience {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.experience-number {
+    color: var(--gold);
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1;
+}
+
+/* Call + WhatsApp actions */
+.stylist-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+/* Call button */
 .stylist-info .phone-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
     min-height: 2.75rem;
-    margin-top: 0.5rem;
     padding: 0 1.5rem;
     background: var(--gold);
     border: 1px solid var(--gold);
@@ -120,11 +172,50 @@
     outline-offset: 3px;
 }
 
-/* Hover only where a real pointer exists, so it doesn't stick after a tap */
+/* WhatsApp button */
+.stylist-info .whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    padding: 0 1.5rem;
+    background: transparent;
+    border: 1px solid var(--gold-dark);
+    border-radius: 6px;
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.stylist-info .whatsapp-button svg {
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    color: #25d366;
+}
+
+.stylist-info .whatsapp-button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+}
+
+/* Hover only where a real pointer exists */
 @media (hover: hover) {
     .stylist-info .phone-button:hover {
         background: transparent;
         color: var(--gold);
+    }
+
+    .stylist-info .whatsapp-button:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--dark);
     }
 }
 
@@ -135,7 +226,7 @@
     }
 }
 
-/* Mobile: stacked, full-width call button */
+/* Mobile: stacked layout and full-width buttons */
 @media (max-width: 600px) {
     .stylist-header {
         margin-bottom: 1.75rem;
@@ -150,13 +241,22 @@
         max-width: 24rem;
     }
 
-    .stylist-info .phone-button {
-        align-self: stretch;
+    .stylist-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stylist-info .phone-button,
+    .stylist-info .whatsapp-button {
+        width: 100%;
     }
 }
 
+/* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    .stylist-info .phone-button {
+    .stylist-info .phone-button,
+    .stylist-info .whatsapp-button {
         transition: none;
     }
 }
