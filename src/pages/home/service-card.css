@@ -144,10 +144,10 @@
 
     display: grid;
     place-items: center;
-    width: 40px;
-    height: 40px;
+    width: 52px;
+    height: 52px;
 
-    padding: 5px;
+    padding: 7px;
 
     border: 1px solid var(--accent);
     border-radius: 50%;
@@ -160,7 +160,7 @@
 .service-card-icon svg {
     width: 16px;
     height: 16px;
-    stroke-width: 1.9;
+    stroke-width: 1.5;
 }
 
 /* ----- Text ----- */
@@ -311,7 +311,7 @@
 
     /* photo on the left, stretched to the card's height */
     .service-card-media {
-        flex: 0 0 clamp(100px, 36%, 150px);
+        flex: 0 0 clamp(180px, 36%, 150px);
         aspect-ratio: auto;
         border-radius: 11px 0 0 11px;
     }
