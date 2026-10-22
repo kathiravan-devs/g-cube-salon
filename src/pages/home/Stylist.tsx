@@ -54,7 +54,7 @@ export function Stylist() {
                     <div className="stylist-actions">
                         <a
                             href={salon.phoneHref}
-                            className="phone-button"
+                            className="ph-button"
                             aria-label={`Call G Cube Salon at ${salon.phone}`}
                         >
                             <Phone size={18} aria-hidden="true" />

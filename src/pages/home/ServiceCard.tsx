@@ -2,14 +2,13 @@ import { useState } from "react";
 import {
   Scissors,
   Palette,
-  Sparkles,
-  Waves,
   ScanFace,
-  Droplets,
-  HeartPulse,
   Star,
   type LucideIcon,
   ArrowRight,
+  Droplets,
+  Flower2,
+  Wind,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
@@ -21,14 +20,15 @@ import {
 import "../../styles/buttons.css"
 import "./service-card.css";
 
+
+
 const categoryIcons: Record<string, LucideIcon> = {
   hair: Scissors,
   colouring: Palette,
-  "hair-treatments": Sparkles,
-  "styling-treatments": Waves,
-  facial: ScanFace,
-  bleach: Droplets,
-  "skin-treatments": HeartPulse,
+  "hair-treatments": Droplets,
+  "styling-treatments": Wind,
+  "facial&bleach": Flower2,
+  "skin-treatments": ScanFace,
 };
 
 const tabs: { id: AudienceTab; label: string }[] = [
@@ -54,7 +54,7 @@ export function OurServices() {
     >
       <div className="service-header">
         <div className="service-heading">
-          <span className="section-eyebrow">Our Services</span>
+          <span className="section-eyebrow">OUR SERVICES</span>
           <h2 id="services-title">Services &amp; Pricing</h2>
           <p>Haircuts, colouring, skin care and grooming for men and women.</p>
         </div>
@@ -80,34 +80,43 @@ export function OurServices() {
 
           return (
             <li key={category.id} className="service-card">
-              <Icon className="service-card-icon" aria-hidden="true" />
+              <div className="service-card-media">
+                <img src={`images/service/${category.image}-${audience}.jpg`} alt={category.title} className="service-card-photo" />
+                <Icon className="service-card-icon" aria-hidden="true" />
+              </div>
 
-              <h3 className="service-card-title">
-                <Link
-                  to={`/services?audience=${audience}&category=${category.id}`}
-                  className="service-card-link"
-                >
-                  {category.title}
-                </Link>
-              </h3>
+              <div className="service-card-body">
 
-              <p className="service-card-summary">{category.summary}</p>
-              <p className="service-card-price">
-                {getPriceLabel(items)}
-                <ArrowRight />
-              </p>
+                <h3 className="service-card-title">
+                  <Link
+                    to={`/services?audience=${audience}&category=${category.id}`}
+                    className="service-card-link"
+                  >
+                    {category.title}
+                  </Link>
+                </h3>
+
+                <p className="service-card-summary">{category.summary[audience]}</p>
+
+                <p className="service-card-price">
+                  {getPriceLabel(items)}
+                  <ArrowRight aria-hidden="true" />
+                </p>
+
+              </div>
+
             </li>
           );
         })}
       </ul>
 
-      
-        <Link to={`/services?audience=${audience}`} className="service-footer">
-          <button className="btn btn-primary-outline">
-            View all services &amp; pricing
-            <ArrowRight aria-hidden="true" />
-          </button>
-        </Link>
+
+      <Link to={`/services?audience=${audience}`} className="service-footer">
+        <button className="btn btn-primary-outline">
+          View all services &amp; pricing
+          <ArrowRight aria-hidden="true" />
+        </button>
+      </Link>
     </section>
   );
 }

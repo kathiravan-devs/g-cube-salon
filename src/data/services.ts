@@ -4,7 +4,8 @@ export type PriceType = "fixed" | "from";
 export interface Category {
     id: string;
     title: string;
-    summary: string; // may only name services that exist on BOTH sheets
+    summary: { men: string; women: string }; // may only name services that exist on BOTH sheets
+    image: string;
 }
 
 export interface Service {
@@ -18,16 +19,59 @@ export interface Service {
 }
 
 export const categories: Category[] = [
-    { id: "hair", title: "Hair Services", summary: "Haircuts for men, women and kids." },
-    { id: "colouring", title: "Colouring", summary: "Hair colour, streaks and fashion colour." },
-    { id: "hair-treatments", title: "Hair Treatments", summary: "Hair spa and anti-dandruff treatment." },
-    { id: "styling-treatments", title: "Styling Treatments", summary: "Straightening and smoothening." },
-    { id: "facial", title: "Facial", summary: "From a quick clean up to a bridal facial." },
-    { id: "bleach", title: "Bleach & De-tan", summary: "Face, face & neck and full hand." },
-    { id: "skin-treatments", title: "Skin Treatments", summary: "Acne, anti-aging and anti-pigmentation." },
+    {
+        id: "hair",
+        title: "Hair Services",
+        summary: {
+            men: "Haircuts for men and kids, plus beard trims and makeover haircuts.",
+            women: "Haircuts for women and kids, plus advanced and fashion haircuts.",
+        },
+        image: "hair-cut"
+    }, {
+        id: "colouring",
+        title: "Colouring",
+        summary: {
+            men: "Basic colour, fashion colour and streaks, plus crazy colour for a bold look.",
+            women: "Root touch-up and global colour, plus streaks, global streaks and fashion colour.",
+        },
+        image: "colouring"
+    }, {
+        id: "hair-treatments",
+        title: "Hair Treatments",
+        summary: {
+            men: "Hair spa for short or long hair, plus anti-dandruff treatment for the scalp.",
+            women: "Hair spa and anti-dandruff treatment to look after your hair and scalp.",
+        },
+        image: "hair-treatment"
+    }, {
+        id: "styling-treatments",
+        title: "Styling Treatments",
+        summary: {
+            men: "Hair straightening and smoothening, plus keratin and botox treatments.",
+            women: "Hair straightening and smoothening for a straight, smooth finish.",
+        },
+        image: "styling-treatment"
+    }, {
+        id: "facial&bleach",
+        title: "Facial & Bleach",
+        summary: {
+            men: "Clean up, fruit, gold, pearl and bridal facials, plus bleach and de-tan.",
+            women: "Clean up, fruit, gold, pearl and bridal facials, plus bleach and de-tan.",
+        },
+        image: "facial&bleach"
+    }, {
+        id: "skin-treatments",
+        title: "Skin Treatments",
+        summary: {
+            men: "Treatments for acne, anti-aging and anti-pigmentation.",
+            women: "Treatments for acne, anti-aging and anti-pigmentation.",
+        },
+        image: "skin-treatment"
+    }
 ];
 
 export const services: Service[] = [
+
     // ---------- Hair ----------
     { id: "hair-cut-men", name: "Hair cut", categoryId: "hair", audience: "men", price: 250, priceType: "fixed" },
     { id: "kid-cut-men", name: "Kid cut", categoryId: "hair", audience: "men", price: 150, priceType: "fixed" },
@@ -65,37 +109,37 @@ export const services: Service[] = [
     { id: "smoothening-women", name: "Smoothening", categoryId: "styling-treatments", audience: "women", price: 4000, priceType: "from" },
 
     // ---------- Facial ----------
-    { id: "clean-up-men", name: "Clean up", categoryId: "facial", audience: "men", price: 450, priceType: "fixed" },
-    { id: "fruit-facial-men", name: "Fruit facial", categoryId: "facial", audience: "men", price: 700, priceType: "fixed" },
-    { id: "white-n-glow-men", name: "White N Glow", categoryId: "facial", audience: "men", price: 1000, priceType: "fixed" },
-    { id: "fair-secret-men", name: "Fair secret", categoryId: "facial", audience: "men", price: 1200, priceType: "fixed" },
-    { id: "skin-lightening-men", name: "Skin lightening", categoryId: "facial", audience: "men", price: 1400, priceType: "fixed" },
-    { id: "pearl-facial-men", name: "Pearl facial", categoryId: "facial", audience: "men", price: 1500, priceType: "fixed" },
-    { id: "gold-facial-men", name: "Gold facial", categoryId: "facial", audience: "men", price: 1700, priceType: "fixed" },
-    { id: "platinum-men", name: "Platinum", categoryId: "facial", audience: "men", price: 1800, priceType: "fixed" },
-    { id: "tan-clear-facial-men", name: "Tan clear facial", categoryId: "facial", audience: "men", price: 2000, priceType: "fixed" },
-    { id: "advanced-facial-men", name: "Advanced facial", categoryId: "facial", audience: "men", price: 2200, priceType: "fixed" },
-    { id: "at-care-facial-men", name: "@care facial", categoryId: "facial", audience: "men", price: 2500, priceType: "fixed" }, // TODO: real name
-    { id: "bridal-facial-men", name: "Bridal facial", categoryId: "facial", audience: "men", price: 3400, priceType: "fixed" },
+    { id: "clean-up-men", name: "Clean up", categoryId: "facial&bleach", audience: "men", price: 450, priceType: "fixed" },
+    { id: "fruit-facial-men", name: "Fruit facial", categoryId: "facial&bleach", audience: "men", price: 700, priceType: "fixed" },
+    { id: "white-n-glow-men", name: "White N Glow", categoryId: "facial&bleach", audience: "men", price: 1000, priceType: "fixed" },
+    { id: "fair-secret-men", name: "Fair secret", categoryId: "facial&bleach", audience: "men", price: 1200, priceType: "fixed" },
+    { id: "skin-lightening-men", name: "Skin lightening", categoryId: "facial&bleach", audience: "men", price: 1400, priceType: "fixed" },
+    { id: "pearl-facial-men", name: "Pearl facial", categoryId: "facial&bleach", audience: "men", price: 1500, priceType: "fixed" },
+    { id: "gold-facial-men", name: "Gold facial", categoryId: "facial&bleach", audience: "men", price: 1700, priceType: "fixed" },
+    { id: "platinum-men", name: "Platinum", categoryId: "facial&bleach", audience: "men", price: 1800, priceType: "fixed" },
+    { id: "tan-clear-facial-men", name: "Tan clear facial", categoryId: "facial&bleach", audience: "men", price: 2000, priceType: "fixed" },
+    { id: "advanced-facial-men", name: "Advanced facial", categoryId: "facial&bleach", audience: "men", price: 2200, priceType: "fixed" },
+    { id: "at-care-facial-men", name: "@care facial", categoryId: "facial&bleach", audience: "men", price: 2500, priceType: "fixed" }, // TODO: real name
+    { id: "bridal-facial-men", name: "Bridal facial", categoryId: "facial&bleach", audience: "men", price: 3400, priceType: "fixed" },
 
-    { id: "clean-up-women", name: "Clean up", categoryId: "facial", audience: "women", price: 1000, priceType: "fixed" }, // TODO: vs ₹450 for men?
-    { id: "fruit-facial-women", name: "Fruit facial", categoryId: "facial", audience: "women", price: 1200, priceType: "fixed" },
-    { id: "white-n-glow-women", name: "White N Glow", categoryId: "facial", audience: "women", price: 1500, priceType: "fixed" },
-    { id: "fair-secret-women", name: "Fair secret", categoryId: "facial", audience: "women", price: 1700, priceType: "fixed" },
-    { id: "skin-lightening-women", name: "Skin lightening", categoryId: "facial", audience: "women", price: 1900, priceType: "fixed" },
-    { id: "pearl-facial-women", name: "Pearl facial", categoryId: "facial", audience: "women", price: 2200, priceType: "fixed" },
-    { id: "gold-facial-women", name: "Gold facial", categoryId: "facial", audience: "women", price: 2500, priceType: "fixed" },
-    { id: "platinum-women", name: "Platinum", categoryId: "facial", audience: "women", price: 3000, priceType: "fixed" }, // TODO: same as Advanced?
-    { id: "advanced-facial-women", name: "Advanced facial", categoryId: "facial", audience: "women", price: 3000, priceType: "fixed" },
-    { id: "at-care-facial-women", name: "@care facial", categoryId: "facial", audience: "women", price: 3500, priceType: "fixed" }, // TODO: real name
-    { id: "bridal-facial-women", name: "Bridal facial", categoryId: "facial", audience: "women", price: 4200, priceType: "fixed" },
+    { id: "clean-up-women", name: "Clean up", categoryId: "facial&bleach", audience: "women", price: 1000, priceType: "fixed" }, // TODO: vs ₹450 for men?
+    { id: "fruit-facial-women", name: "Fruit facial", categoryId: "facial&bleach", audience: "women", price: 1200, priceType: "fixed" },
+    { id: "white-n-glow-women", name: "White N Glow", categoryId: "facial&bleach", audience: "women", price: 1500, priceType: "fixed" },
+    { id: "fair-secret-women", name: "Fair secret", categoryId: "facial&bleach", audience: "women", price: 1700, priceType: "fixed" },
+    { id: "skin-lightening-women", name: "Skin lightening", categoryId: "facial&bleach", audience: "women", price: 1900, priceType: "fixed" },
+    { id: "pearl-facial-women", name: "Pearl facial", categoryId: "facial&bleach", audience: "women", price: 2200, priceType: "fixed" },
+    { id: "gold-facial-women", name: "Gold facial", categoryId: "facial&bleach", audience: "women", price: 2500, priceType: "fixed" },
+    { id: "platinum-women", name: "Platinum", categoryId: "facial&bleach", audience: "women", price: 3000, priceType: "fixed" }, // TODO: same as Advanced?
+    { id: "advanced-facial-women", name: "Advanced facial", categoryId: "facial&bleach", audience: "women", price: 3000, priceType: "fixed" },
+    { id: "at-care-facial-women", name: "@care facial", categoryId: "facial&bleach", audience: "women", price: 3500, priceType: "fixed" }, // TODO: real name
+    { id: "bridal-facial-women", name: "Bridal facial", categoryId: "facial&bleach", audience: "women", price: 4200, priceType: "fixed" },
 
     // ---------- Bleach & de-tan (same on both sheets) ----------
-    { id: "face-oxy", name: "Face oxy", categoryId: "bleach", audience: "all", price: 400, priceType: "fixed" },
-    { id: "face-detan", name: "Face de-tan", categoryId: "bleach", audience: "all", price: 400, priceType: "fixed" },
-    { id: "oxy-face-neck", name: "Oxy face & neck", categoryId: "bleach", audience: "all", price: 550, priceType: "fixed" },
-    { id: "detan-face-neck", name: "De-tan face & neck", categoryId: "bleach", audience: "all", price: 550, priceType: "fixed" },
-    { id: "detan-full-hand", name: "De-tan full hand", categoryId: "bleach", audience: "all", price: 1000, priceType: "from" },
+    { id: "face-oxy", name: "Face oxy", categoryId: "facial&bleach", audience: "all", price: 400, priceType: "fixed" },
+    { id: "face-detan", name: "Face de-tan", categoryId: "facial&bleach", audience: "all", price: 400, priceType: "fixed" },
+    { id: "oxy-face-neck", name: "Oxy face & neck", categoryId: "facial&bleach", audience: "all", price: 550, priceType: "fixed" },
+    { id: "detan-face-neck", name: "De-tan face & neck", categoryId: "facial&bleach", audience: "all", price: 550, priceType: "fixed" },
+    { id: "detan-full-hand", name: "De-tan full hand", categoryId: "facial&bleach", audience: "all", price: 1000, priceType: "from" },
 
     // ---------- Skin treatments (same on both sheets) ----------
     { id: "acne", name: "Acne treatment", categoryId: "skin-treatments", audience: "all", price: 3800, priceType: "fixed" },

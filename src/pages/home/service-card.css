@@ -1,283 +1,364 @@
+/* =========================================================
+   OUR SERVICES
+   Tokens from global.css: --page-padding, --font-heading, --font-body,
+   --dark, --dark-rgb, --dark-2, --white, --text-muted, --text-subtle,
+   --accent, --line, --line-strong
+   ========================================================= */
+
 .service-section {
-  padding: 20px var(--page-padding);
-  /* no overflow: hidden here, the card row bleeds to the screen edges */
+    /* greyscale photos; the Colouring card turns this off below */
+  --photo-filter: grayscale(1) contrast(1.05) brightness(0.9);
+
+    padding: clamp(36px, 5vw, 64px) var(--page-padding);
 }
+
 /* ---------- Header ---------- */
 
 .service-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px 24px;
-  margin-bottom: 28px;
-}
-
-.section-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 10px;
-
-  color: var(--accent);
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-.section-eyebrow::after {
-  content: "";
-  flex-shrink: 0;
-  width: 56px;
-  height: 2px;
-  background: var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px 24px;
+    margin-bottom: clamp(24px, 3vw, 36px);
 }
 
 .service-heading h2 {
-  margin: 0;
-  font-family: var(--font-heading);
-  font-size: clamp(1.875rem, 1.2rem + 2.4vw, 2.75rem);
-  font-weight: 600;
-  line-height: 1.1;
-  text-wrap: balance;
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 1.3rem + 2.6vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    text-wrap: balance;
 }
 
 .service-heading p {
-  margin: 10px 0 0;
-  max-width: 52ch;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
+    margin: 10px 0 0;
+    max-width: 52ch;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 /* ---------- Men / Women toggle ---------- */
 
 .service-tabs {
-  display: inline-flex;
-  flex-shrink: 0;
-  gap: 4px;
-  padding: 4px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
+    display: inline-flex;
+    flex-shrink: 0;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
 }
 
 .service-tabs button {
-  min-width: 88px;
-  min-height: 40px;
-  padding: 0 22px;
+    min-width: 96px;
+    min-height: 40px;
+    padding: 0 22px;
 
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--white);
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--white);
 
-  font: 600 0.8125rem/1 var(--font-body);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
+    font: 600 0.8125rem/1 var(--font-body);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
 
-  transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .service-tabs button[aria-pressed="true"] {
-  background: var(--accent);
-  color: var(--dark);
+    background: var(--accent);
+    color: var(--dark);
 }
 
 .service-tabs button:focus-visible {
-  outline: 2px solid var(--accent-hover);
-  outline-offset: 2px;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
-/* ---------- Card row (one row, scrolls sideways when it can't fit) ---------- */
+/* ---------- Grid ---------- */
 
 .service-grid {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 16px;
+    display: grid;
+    /* minmax(0, 1fr) lets long text wrap instead of widening a column */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 28px);
 
-  /* bleed to the screen edges; the first card still lines up with the heading */
-  margin: 0 calc(var(--page-padding) * -1);
-  padding-block: 10px 20px;
-  /* room for the hover lift and the focus ring */
-  padding-inline: var(--page-padding);
-  scroll-padding-inline: var(--page-padding);
-  list-style: none;
-
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  /* swiping the row doesn't trigger browser "back" */
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-dim) transparent;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
+
+/* ---------- Card ---------- */
 
 .service-card {
-  position: relative;
-  /* anchors the stretched link */
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    position: relative; /* anchors the stretched link */
+    display: flex;
+    flex-direction: column;
 
-  /* 70vw on phones, so the next card peeks in and says "swipe";
-       capped at 280px on tablets and laptops */
-  flex: 1 0 clamp(220px, 70vw, 280px);
-  scroll-snap-align: start;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--dark-2);
 
-  padding: 22px 18px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--dark-2);
-
-  transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
+/* Colour work is sold by its colour, so this card is never greyscale */
+.service-card--colouring {
+    --photo-filter: none;
+}
+
+/* ----- Photo + icon ring ----- */
+
+.service-card-media {
+    position: relative; /* anchors the icon ring */
+    flex-shrink: 0;
+    aspect-ratio: 16 / 9;
+
+    border-radius: 11px 11px 0 0; /* card radius minus its 1px border */
+    background: var(--dark);      /* shows while the photo loads, or when there is none */
+}
+
+.service-card-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%; /* keeps heads in frame when the photo is cropped */
+    border-radius: inherit;
+
+    filter: var(--photo-filter);
+    transition: filter 0.4s ease;
+}
+
+/* Half on the photo, half on the card.
+   Nothing above it may use overflow: hidden, or the ring gets clipped. */
 .service-card-icon {
-  width: 52px;
-  height: 52px;
-  padding: 13px;
-  border: 1px solid var(--accent);
-  border-radius: 50%;
-  color: var(--accent);
-  stroke-width: 1.5;
+    position: absolute;
+    left: 22px;
+    bottom: -20px; /* half the ring height */
+
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+
+    padding: 5px;
+
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    background: var(--dark-2);
+    color: var(--accent);
+
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.service-card-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1.9;
+}
+
+/* ----- Text ----- */
+
+.service-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    padding: 40px 22px 22px; /* 26px ring overhang + 14px of air */
 }
 
 .service-card-title {
-  margin: 0;
-  font-family: var(--font-heading);
-  font-size: 1.375rem;
-  font-weight: 600;
-  line-height: 1.15;
+    margin: 0 0 8px;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.15;
 }
 
 .service-card-summary {
-  margin: 0;
-  color: var(--text-subtle);
-  font-size: 0.875rem;
-  line-height: 1.5;
+    margin: 0 0 16px;
+    color: var(--text-subtle);
+    font-size: 0.925rem;
+    line-height: 1.55;
 }
 
-/* auto top margin pins the price to the card bottom, so prices line up */
+/* auto top margin pins the price row to the card bottom, so prices line up across a row */
 .service-card-price {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: auto 0 0;
-  padding-top: 8px;
-  color: var(--accent);
-  font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: auto 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+
+    color: var(--accent);
+    font-size: 1rem;
+    font-weight: 600;
 }
 
-/* One link per card: the title link stretches over the whole card */
+.service-card-price svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.25s ease;
+}
+
+/* ----- One link per card: the title link stretches over the whole card ----- */
+
 .service-card-link {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 .service-card-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+    content: "";
+    position: absolute;
+    inset: 0;
 }
 
 .service-card-link:focus-visible {
-  outline: none;
-  /* the ring goes on the card instead */
+    outline: none; /* the ring is drawn on the card instead */
 }
 
 .service-card:has(.service-card-link:focus-visible) {
-  outline: 2px solid var(--accent-hover);
-  outline-offset: 3px;
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
-.service-card-price svg {
-  width: 18px;
-  height: 18px;
+/* keyboard focus gets the same colour reveal as hover */
+.service-card:has(.service-card-link:focus-visible) .service-card-photo {
+    filter: none;
 }
 
 @media (hover: hover) {
-  .service-card:hover .service-card-price svg {
-    transform: translateX(3px);
-  }
+    .service-card:hover {
+        border-color: var(--line-strong);
+        transform: translateY(-4px);
+    }
+
+    .service-card:hover .service-card-photo {
+        filter: none;
+    }
+
+    .service-card:hover .service-card-icon {
+        background: var(--accent);
+        color: var(--dark);
+    }
+
+    .service-card:hover .service-card-price svg {
+        transform: translateX(4px);
+    }
+
+    .service-tabs button[aria-pressed="false"]:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
 }
 
-/* ---------- Footer link ---------- */
+/* ---------- Footer button ---------- */
 
 .service-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-  text-decoration: none;
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(24px, 3vw, 36px);
 }
-
-.service-card-price svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.2s ease;
-}
-
 
 /* =========================================================
    RESPONSIVE
-   Three states: scrolling row (default), header stacked (<=640),
-   all seven cards in one row (>=1440)
+   above 991px   3 columns
+   991px down    2 columns
+   640px down    header stacks, tabs go full width
+   599px down    1 column of compact photo-left rows
    ========================================================= */
 
-/* Phones: stack the header, full-width tabs with 44px touch targets */
-@media (max-width: 640px) {
-  .service-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 18px;
-  }
-
-  .service-tabs {
-    display: flex;
-  }
-
-  .service-tabs button {
-    flex: 1;
-    min-height: 44px;
-  }
-
-  .section-eyebrow {
-    gap: 10px;
-    font-size: 0.6875rem;
-    letter-spacing: 0.22em;
-  }
-
-  .section-eyebrow::after {
-    width: 32px;
-  }
+@media (max-width: 991px) {
+    .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
-/* Wide screens: all seven share the row, nothing scrolls.
-   At 1440px each card is about 170px wide, so keep the text compact. */
-@media (min-width: 1440px) {
-  .service-card {
-    flex: 1 1 0;
-    min-width: 0;
-    padding: 20px 16px;
-  }
+@media (max-width: 640px) {
+    .service-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
 
-  .service-card-title {
-    font-size: 1.25rem;
-  }
+    .service-tabs {
+        display: flex;
+    }
+
+    .service-tabs button {
+        flex: 1;
+        min-height: 44px; /* touch target */
+    }
+}
+
+@media (max-width: 599px) {
+    .service-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .service-card {
+        flex-direction: row;
+    }
+
+    /* photo on the left, stretched to the card's height */
+    .service-card-media {
+        flex: 0 0 clamp(100px, 36%, 150px);
+        aspect-ratio: auto;
+        border-radius: 11px 0 0 11px;
+    }
+
+    /* the ring moves inside the photo's corner */
+    .service-card-icon {
+        left: 10px;
+        bottom: 10px;
+        width: 38px;
+        height: 38px;
+        background: rgba(var(--dark-rgb, 8, 8, 8), 0.85);
+    }
+
+    .service-card-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .service-card-body {
+        padding: 14px 16px;
+    }
+
+    .service-card-title {
+        font-size: 1.3rem;
+    }
+
+    .service-card-summary {
+        margin-bottom: 10px;
+    }
+
+    .service-card-price {
+        padding-top: 0;
+        border-top: 0;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .service-tabs button,
+    .service-card,
+    .service-card-photo,
+    .service-card-icon,
+    .service-card-price svg {
+        transition: none;
+    }
 
-  .service-tabs button,
-  .service-card {
-    transition: none;
-  }
-
-  .service-card-price svg {
-    transition: none;
-  }
-
-  .service-card:hover .service-card-price svg {
-    transform: none;
-  }
+    .service-card:hover,
+    .service-card:hover .service-card-price svg {
+        transform: none;
+    }
 }
