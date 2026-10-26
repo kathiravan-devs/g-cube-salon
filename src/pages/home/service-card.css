@@ -266,14 +266,12 @@
     display: flex;
     justify-content: center;
     margin-top: clamp(24px, 3vw, 36px);
+    text-decoration: none;
 }
 
 /* =========================================================
    RESPONSIVE
-   above 991px   3 columns
-   991px down    2 columns
-   640px down    header stacks, tabs go full width
-   599px down    1 column of compact photo-left rows
+
    ========================================================= */
 
 @media (max-width: 991px) {

@@ -6,6 +6,10 @@ export const salon = {
     phoneHref: "tel:+918438328069",
     whatsapp: "918438328069",
     hours: "9:00 AM – 9:00 PM",
+    social: {
+        instagram: 'https://wa.me/${salon.whatsapp}',
+        facebook: 'https://wa.me/${salon.whatsapp}'
+    }
 };
 
 export const whatsappLink = (message: string) =>

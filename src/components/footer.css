@@ -1,0 +1,242 @@
+/* =========================================================
+   FOOTER
+   Tokens from global.css: --page-padding, --font-body, --dark, --white,
+   --text-muted, --text-subtle, --accent, --line, --line-strong, --whatsapp
+
+   phones       brand / Quick Links + Services side by side / contact
+   >= 720px     brand row, then three columns
+   >= 1100px    four columns, like the mockup
+
+   No max-width: the footer shares the edges of the header, hero and services.
+   ========================================================= */
+
+.site-footer {
+    background: var(--dark);
+    border-top: 1px solid var(--line);
+    color: var(--text-subtle);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.site-footer a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* ---------- Columns ---------- */
+
+.footer-main {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Quick Links | Services */
+    gap: 40px 24px;
+    padding: clamp(40px, 6vw, 72px) var(--page-padding) clamp(32px, 4vw, 48px);
+}
+
+.footer-brand,
+.footer-column {
+    min-width: 0; /* lets long text wrap instead of widening the column */
+}
+
+/* brand and contact are full-width rows on phones */
+.footer-brand,
+.footer-contact {
+    grid-column: 1 / -1;
+}
+
+/* ---------- Brand ---------- */
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.footer-logo {
+    display: inline-block;
+    line-height: 0; /* no gap under the image */
+}
+
+.footer-logo img {
+    display: block;
+    width: auto;
+    height: clamp(52px, 6vw, 72px);
+}
+
+.footer-tagline {
+    max-width: 30ch;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-wrap: balance;
+}
+
+.footer-socials {
+    position: relative;
+    display: flex;
+    gap: 4px;
+    margin-left: -11px; /* (44px target - 22px icon) / 2: first icon lines up with the logo */
+}
+
+/* short rule above the icons, as in the mockup. It disappears with the icons. */
+.footer-socials::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 11px;
+    width: 40px;
+    height: 1px;
+    background: var(--line-strong);
+}
+
+.footer-socials a {
+    display: grid;
+    place-items: center;
+    width: 44px; /* touch target */
+    height: 44px;
+    border-radius: 50%;
+    color: var(--white);
+    transition: background-color 0.2s ease;
+}
+
+.footer-socials svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* ---------- Column titles and link lists ---------- */
+
+.footer-title {
+    margin: 0 0 18px;
+    color: var(--white);
+    font: 600 0.8125rem/1.2 var(--font-body);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.footer-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-links a {
+    display: block;
+    width: fit-content;
+    padding: 11px 0; /* about 44px touch target */
+    color: var(--text-muted);
+    text-decoration: none;
+    overflow-wrap: break-word;
+    transition: color 0.2s ease;
+}
+
+/* ---------- Contact ---------- */
+
+.footer-contact-list {
+    display: grid;
+    font-style: normal; /* <address> is italic by default */
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.footer-contact-item svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px; /* centres the icon on the first line of text */
+    color: var(--white);
+}
+
+/* green only on the WhatsApp icon */
+.footer-contact-item .footer-whatsapp {
+    color: var(--whatsapp);
+}
+
+.footer-contact-item span {
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+/* ---------- Bottom bar ---------- */
+
+.footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+
+    margin-inline: var(--page-padding); /* the rule spans the content, not the screen */
+    padding: 22px 0 28px;
+    border-top: 1px solid var(--line);
+
+    font-size: 0.8125rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* ---------- Hover: only on devices that can hover ---------- */
+
+@media (hover: hover) {
+    .footer-links a:hover,
+    a.footer-contact-item:hover {
+        color: var(--white);
+    }
+
+    /* white vs 85% white is hard to see, so the underline carries the hover */
+    .footer-links a:hover,
+    a.footer-contact-item:hover span {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    .footer-socials a:hover {
+        background: rgba(255, 255, 255, 0.12);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* Very small phones: one column */
+@media (max-width: 359px) {
+    .footer-main {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Tablet: brand on its own row, then three columns */
+@media (min-width: 720px) {
+    .footer-main {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr);
+        gap: 48px 32px;
+    }
+
+    .footer-contact {
+        grid-column: auto;
+    }
+}
+
+/* Desktop: four columns */
+@media (min-width: 1100px) {
+    .footer-main {
+        grid-template-columns:
+            minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr);
+        gap: 48px clamp(32px, 4vw, 72px);
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+}
