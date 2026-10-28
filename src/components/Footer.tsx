@@ -4,7 +4,7 @@ import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
 import { categories } from "../data/services";
 import { salon, whatsappLink } from "../data/salon";
 import logo from "/logo/logo.png"; // same file the Header uses
-import "./Footer.css";
+import "./footer.css";
 
 const quickLinks = [
     { label: "Home", to: "/" },
@@ -32,6 +32,7 @@ export function Footer() {
                 <div className="footer-brand">
                     <Link to="/" className="footer-logo">
                         <img src={logo} alt="G Cube Salon" />
+                        <span className="brand-name">G CUBE SALON</span>
                     </Link>
 
                     <p className="footer-tagline">
