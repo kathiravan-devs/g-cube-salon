@@ -131,8 +131,8 @@
     object-position: center 30%; /* keeps heads in frame when the photo is cropped */
     border-radius: inherit;
 
-    filter: var(--photo-filter);
-    transition: filter 0.4s ease;
+    /* filter: var(--photo-filter);
+    transition: filter 0.4s ease; */
 }
 
 /* Half on the photo, half on the card.
@@ -302,14 +302,19 @@
         grid-template-columns: 1fr;
         gap: 12px;
     }
-
+    
     .service-card {
         flex-direction: row;
     }
-
+    .service-card-summary{
+        font-size: 12px;
+    }
+    .service-card-price {
+        font-size: 14px;
+    }
     /* photo on the left, stretched to the card's height */
     .service-card-media {
-        flex: 0 0 clamp(180px, 36%, 150px);
+        flex: 0 0 clamp(150px, 36%, 150px);
         aspect-ratio: auto;
         border-radius: 11px 0 0 11px;
     }

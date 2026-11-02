@@ -8,26 +8,26 @@ export interface Images {
 export const images: Images[] = [
     {
         id: 1,
-        imageURL: '/images/google.png'
+        imageURL: '/images/not-ready.png'
     },
     {
         id: 2,
-        imageURL: '/images/google.png'
+        imageURL: '/images/not-ready.png'
     },
     {
         id: 3,
-        imageURL: '/images/google.png'
+        imageURL: '/images/not-ready.png'
     },
     {
         id: 4,
-        imageURL: '/images/google.png'
+        imageURL: '/images/not-ready.png'
     },
     {
         id: 5,
-        imageURL: '/images/google.png'
+        imageURL: '/images/not-ready.png'
     },
     {
         id: 6,
-        imageURL: '/images/google.png'
+        imageURL: '/images/not-ready.png'
     },
 ]
