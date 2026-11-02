@@ -1,7 +1,8 @@
 // import { useState } from 'react'
-import { Header } from './components/Header'
-import { Footer } from './components/Footer'
-import { Home } from './pages/home/Home'
+import { Routes, Route } from 'react-router';
+import { Home } from './pages/home/Home';
+import { Services } from './pages/services/Services';
+
 
 
 function App() {
@@ -9,9 +10,10 @@ function App() {
 
   return (
     <>
-      <Header />
-      <Home />
-      <Footer />
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="services" element={<Services />} />
+      </Routes>
     </>
   )
 }
