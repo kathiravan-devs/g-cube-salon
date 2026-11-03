@@ -5,14 +5,11 @@
 
 .hero {
     position: relative;
-    isolation: isolate; /* keeps the ::before z-index inside the hero */
-
+    isolation: isolate;
     display: flex;
     align-items: center;
-
     min-height: clamp(460px, 68vh, 680px);
     padding: clamp(48px, 7vw, 88px) var(--page-padding);
-
     background: var(--dark) url("../../assets/hero.png") center right / cover no-repeat;
 }
 
@@ -21,7 +18,6 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-
     background: linear-gradient(
         90deg,
         rgba(var(--dark-rgb), 0.94) 0%,
@@ -35,16 +31,13 @@
     width: min(100%, 600px);
 }
 
-/* ---------- Eyebrow ---------- */
-
+/* Eyebrow — gold is intentionally limited to this label and its rule */
 .hero-eyebrow {
     display: flex;
     align-items: center;
     gap: 16px;
-
     margin: 0 0 16px;
-
-    color: var(--text-muted);
+    color: #C9A96E;
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.3em;
@@ -56,14 +49,11 @@
     flex-shrink: 0;
     width: 56px;
     height: 2px;
-    background: var(--accent);
+    background: #C9A96E;
 }
-
-/* ---------- Title + tagline ---------- */
 
 .hero-title {
     margin: 0;
-
     color: var(--accent);
     font-family: var(--font-heading);
     font-size: clamp(2.25rem, 1.2rem + 5.2vw, 4.75rem);
@@ -76,7 +66,6 @@
 
 .hero-tagline {
     margin: 12px 0 24px;
-
     color: var(--white);
     font-family: var(--font-heading);
     font-size: clamp(1.375rem, 1rem + 1.6vw, 2.25rem);
@@ -84,16 +73,12 @@
     line-height: 1.15;
 }
 
-/* ---------- Meta row ---------- */
-
 .hero-meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 10px 0;
-
     margin-bottom: 32px;
-
     color: var(--text-muted);
     font-size: 0.9375rem;
     line-height: 1.5;
@@ -120,18 +105,11 @@
     color: var(--accent);
 }
 
-/* ---------- Actions ---------- */
-
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
 }
-
-/* =========================================================
-   TABLET (<= 992px): text covers more of the photo,
-   so the overlay is stronger and spans the full width
-   ========================================================= */
 
 @media (max-width: 992px) {
     .hero {
@@ -150,20 +128,12 @@
     }
 }
 
-/* =========================================================
-   PHONE (<= 600px): photo on top, text anchored below,
-   height is driven by content (safe for Tamil text later)
-   ========================================================= */
-
 @media (max-width: 600px) {
     .hero {
         min-height: 0;
         align-items: flex-end;
-
-        /* top padding reserves space for the photo */
-       padding-top: 70px;
+        padding-top: 70px;
         padding-bottom: 36px;
-
         background: var(--dark) url("../../assets/hero-mobile.png") center right / cover no-repeat;
         background-position: 0% top;
     }
