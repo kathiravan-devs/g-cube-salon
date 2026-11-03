@@ -5,7 +5,7 @@
 
     margin: 0 0 16px;
 
-    color: var(--text-muted);
+    color: #C9A96E;
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.3em;
@@ -17,5 +17,5 @@
     flex-shrink: 0;
     width: 56px;
     height: 2px;
-    background: var(--accent);
+    background: #C9A96E;
 }
