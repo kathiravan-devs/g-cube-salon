@@ -1,6 +1,6 @@
 /* =========================================
    SERVICES BROWSER
-   Sized for a 1440px-wide screen, shrinks fluidly below that.
+   Price-list layout: name | price | Book Now. No photos.
 ========================================= */
 
 .services-browser {
@@ -11,13 +11,10 @@
     --sb-line: rgba(255, 255, 255, 0.12);
     --sb-line-strong: rgba(255, 255, 255, 0.32);
 
-    /* Sizes (the comment shows the value at 1440px) */
-    --sb-gap: clamp(1rem, 3.3vw, 3rem);                  /* column gap, 48px */
-    --sb-thumb: clamp(5.5rem, 10.9vw, 9.8rem);           /* row photo, 157px */
-    --sb-thumb-featured: clamp(8rem, 16.7vw, 15rem);     /* featured photo, 240px */
-    --sb-featured-height: clamp(8rem, 12.9vw, 11.6rem);  /* featured row, 186px */
-    --sb-meta: clamp(4.75rem, 8.5vw, 7.6rem);            /* duration / price, 122px */
-    --sb-book: clamp(7.5rem, 10.5vw, 9.4rem);            /* book button, 151px */
+    /* Row columns (tablet and up) */
+    --sb-gap: clamp(1rem, 2.5vw, 2.5rem);
+    --sb-price: 7.5rem;
+    --sb-book: 9.25rem;
 
     padding: 2.25rem var(--page-padding);
     border-top: 1px solid var(--sb-line);
@@ -45,7 +42,7 @@
     align-items: center;
     gap: 0.875rem;
     margin-bottom: 0.4rem;
-    color: var(--sb-text);
+    color: var(--gold);
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.2em;
@@ -147,157 +144,110 @@
     background: var(--sb-text);
 }
 
-/* ---------- Rows ---------- */
+/* ---------- Groups ---------- */
 
 .services-list {
-    width: 100%;
+    margin-top: 1.75rem;
 }
 
+.services-group + .services-group {
+    margin-top: 2.5rem;
+}
 
-.service-row {
-    position: relative;
-    display: grid;
-    grid-template-columns:
-        var(--sb-thumb) minmax(0, 1fr) var(--sb-meta) var(--sb-meta) var(--sb-book);
+.services-group__title {
+    display: flex;
     align-items: center;
-    column-gap: var(--sb-gap);
-    padding: 0.7rem 4px;
-}
-
-/* Divider starts under the text, not under the photo */
-.service-row:not(.service-row--featured)::after {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: calc(4px + var(--sb-thumb) + var(--sb-gap) * 0.7);
-    height: 1px;
-    background: var(--sb-line);
-    content: "";
-}
-
-.service-row--featured {
-    grid-template-columns:
-        var(--sb-thumb-featured) minmax(0, 1fr) var(--sb-meta) var(--sb-meta) var(--sb-book);
-    min-height: var(--sb-featured-height);
-    margin-top: 1.8rem;
-    padding: 0 1.7rem 0 0;
-    overflow: hidden;
-    border-radius: 2px;
-    background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.08),
-        rgba(255, 255, 255, 0.055)
-    );
-}
-
-/* Photo */
-
-.service-row__image {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 5 / 4;
-    overflow: hidden;
-    border-radius: 2px;
-    background: var(--dark-2);
-}
-
-.service-row__image img {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(1);
-    transition: transform 0.35s ease;
-}
-
-/* Featured photo fills the row height and fades into the background */
-.service-row--featured .service-row__image {
-    align-self: stretch;
-    aspect-ratio: auto;
-    border-radius: 0;
-    background: none;
-    -webkit-mask-image: linear-gradient(90deg, #000 55%, transparent);
-    mask-image: linear-gradient(90deg, #000 55%, transparent);
-}
-
-/* Text */
-
-.service-row__content {
-    min-width: 0;
-}
-
-.service-row__featured-label {
-    display: block;
-    margin-bottom: 0.65rem;
-    color: var(--sb-text-faint);
-    font-size: 0.65rem;
+    justify-content: center;
+    gap: 0.875rem;
+    margin: 0;
+    padding: 20px 0px;
+    color: var(--gold);
+    font-family: var(--font-body);
+    font-size: 1.3rem;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
+    line-height: 1.2;
     text-transform: uppercase;
 }
 
-.service-row__content h3 {
+.services-group__title::after {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    content: "";
+}
+.services-group__title::before {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    content: "";
+}
+
+.services-group__list {
     margin: 0;
-    color: var(--sb-text);
-    font-family: var(--font-heading);
-    font-size: clamp(1.25rem, 1rem + 0.6vw, 1.5rem);
-    font-weight: 500;
-    line-height: 1.15;
+    padding: 0;
+    list-style: none;
 }
 
-.service-row--featured .service-row__content h3 {
-    font-size: clamp(1.6rem, 1.1rem + 1.5vw, 2.2rem);
+/* ---------- Rows ---------- */
+
+.service-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--sb-price) var(--sb-book);
+    grid-template-areas: "info price book";
+    align-items: center;
+    column-gap: var(--sb-gap);
+    padding: 1.15rem 0.25rem;
+    border-bottom: 1px solid var(--sb-line);
 }
 
-.service-row__content p {
-    max-width: 26rem;
-    margin: 0.5rem 0 0;
-    color: var(--sb-text-soft);
-    font-size: 0.85rem;
-    line-height: 1.65;
-}
-
-.service-row--featured .service-row__content p {
-    font-size: 0.9375rem;
-}
-
-.service-row__note {
-    display: block;
-    margin-top: 0.3rem;
-    color: var(--sb-text-faint);
-    font-size: 0.75rem;
-}
-
-/* Duration and price */
-
-.service-row__meta {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
+.service-row__info {
+    grid-area: info;
     min-width: 0;
 }
 
-.service-row__meta-label {
+.service-row__name {
+    margin: 0;
+    color: var(--sb-text);
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 1.05rem + 0.5vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.service-row__note {
+    margin: 0.25rem 0 0;
+    color: var(--sb-text-faint);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.service-row__price {
+    grid-area: price;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 0.45rem;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.service-row__from {
     color: var(--sb-text-faint);
     font-size: 0.65rem;
-    font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
-.service-row__meta-value {
+.service-row__amount {
     color: var(--sb-text);
-    font-size: 0.875rem;
+    font-size: 1.0625rem;
     font-weight: 500;
-    line-height: 1.4;
-    overflow-wrap: break-word;
+    font-variant-numeric: tabular-nums;
 }
 
-/* Book button */
-
 .service-row__book {
+    grid-area: book;
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
@@ -331,7 +281,7 @@
 }
 
 .services-browser__note {
-    margin: 1.25rem 0 0;
+    margin: 1.5rem 0 0;
     color: var(--sb-text-faint);
     font-size: 0.75rem;
     line-height: 1.7;
@@ -360,8 +310,9 @@
         color: var(--sb-text);
     }
 
-    .service-row:hover .service-row__image img {
-        transform: scale(1.04);
+    /* Hovering a row lights its button, so the eye can travel name -> Book Now */
+    .service-row:hover .service-row__book {
+        border-color: var(--sb-text);
     }
 
     .service-row__book:hover {
@@ -372,125 +323,122 @@
 }
 
 /* =========================================
-   MOBILE / SMALL TABLET: photo left, text stacked
+   MOBILE (640px and below)
+   Name + price stack on the left, Book Now on the right.
 ========================================= */
 
-@media (max-width: 48rem) {
+@media (max-width: 40rem) {
     .services-browser {
         padding-block: 1.75rem;
     }
 
     .services-browser__header {
-        align-items: flex-start;
+        align-items: stretch;
         flex-direction: column;
         gap: 1.1rem;
     }
 
+    .services-audience {
+        width: 100%;
+    }
+
     .services-audience button {
+        flex: 1;
+        min-width: 0;
         height: 2.75rem;
     }
 
+    /* Tabs scroll sideways: fade the right edge so that is obvious */
     .services-categories {
-        gap: 1.25rem;
+        gap: 1rem;
         margin-top: 1.1rem;
+        padding-bottom: 0.5rem;
+        -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2rem), transparent);
+        mask-image: linear-gradient(90deg, #000 calc(100% - 2rem), transparent);
     }
 
-    .service-row,
-    .service-row--featured {
-        grid-template-columns: 5.5rem 1fr 1fr; /* photo | duration | price */
-        gap: 0.5rem 1rem;
-        min-height: 0;
-        margin-top: 0;
+    /* End spacer so the last tab can scroll clear of the fade */
+    .services-categories::after {
+        flex: 0 0 1.5rem;
+        content: "";
+    }
+
+    .services-categories button {
+        min-height: 2.75rem;
+        padding: 0 0.5rem;
+    }
+
+    .services-list {
+        margin-top: 1.25rem;
+    }
+
+    .services-group + .services-group {
+        margin-top: 2rem;
+    }
+
+    .service-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "info book"
+            "price book";
+        column-gap: 1rem;
+        row-gap: 0.35rem;
         padding: 1rem 0;
-        border-radius: 0;
-        background: none;
-    }
-
-    .service-row:not(.service-row--featured)::after {
-        left: 0;
-    }
-
-    .service-row--featured {
-        margin-top: 1rem;
-        padding: 0.875rem;
-        border: 1px solid var(--sb-line);
-        border-radius: 2px;
-        background: rgba(255, 255, 255, 0.045);
-    }
-
-    .service-row__image,
-    .service-row--featured .service-row__image {
-        grid-column: 1;
-        grid-row: 1 / span 3;
-        align-self: start;
-        width: 5.5rem;
-        height: 5.5rem;
-        aspect-ratio: auto;
-        border-radius: 2px;
-        background: var(--dark-2);
-        -webkit-mask-image: none;
-        mask-image: none;
-    }
-
-    .service-row__content {
-        grid-column: 2 / -1;
-        grid-row: 1;
-    }
-
-    .service-row__content h3,
-    .service-row--featured .service-row__content h3 {
-        font-size: 1.25rem;
-    }
-
-    .service-row__content p,
-    .service-row--featured .service-row__content p {
-        margin-top: 0.25rem;
-        font-size: 0.8125rem;
-    }
-
-    .service-row__meta {
-        grid-column: 2;
-        grid-row: 2;
     }
 
     .service-row__price {
-        grid-column: 3;
+        justify-content: flex-start;
     }
 
     .service-row__book {
-        grid-column: 2 / -1;
-        grid-row: 3;
-        justify-self: start;
-        min-width: 9rem;
+        justify-self: end;
+        min-width: 6.75rem;
         height: 2.75rem;
+        padding: 0 0.875rem;
+        gap: 0.6rem;
     }
 }
 
-/* Small phones */
+/* Small phones (380px and below, including 350px) */
 
 @media (max-width: 23.75rem) {
-    .service-row,
-    .service-row--featured {
-        grid-template-columns: 4.5rem 1fr 1fr;
+    .service-row {
         column-gap: 0.75rem;
     }
 
-    .service-row__image,
-    .service-row--featured .service-row__image {
-        width: 4.5rem;
-        height: 4.5rem;
+    .service-row__name {
+        font-size: 1.12rem;
     }
 
-    .service-row__content h3,
-    .service-row--featured .service-row__content h3 {
-        font-size: 1.125rem;
+    .services-group__title {
+        padding: 10px;
+        font-size: 0.872rem;
+        gap: 0.6rem;
+    }
+
+    .services-group__title::before,
+    .services-group__title::after{
+        width: 40px;
+    }
+
+    .service-row__book {
+        min-width: 6.25rem;
+        padding: 0 0.75rem;
+        gap: 0.5rem;
+    }
+    .service-row__book svg {
+        width: 0.875rem;
+        height: 0.875rem;
+    }
+
+    .services-group__title {
+        letter-spacing: 0.16em;
     }
 }
 
 /* ---------- Reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-    .service-row__image img,
     .service-row__book,
     .services-audience button,
     .services-categories button {

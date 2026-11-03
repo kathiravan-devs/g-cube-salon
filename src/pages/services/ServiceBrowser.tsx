@@ -1,4 +1,3 @@
-
 import { useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import {
@@ -6,7 +5,6 @@ import {
     services,
     formatPrice,
     type AudienceTab,
-    type Category,
     type Service,
 } from "../../data/services";
 import { whatsappLink } from "../../data/salon";
@@ -18,124 +16,89 @@ interface ServicesBrowserProps {
     onAudienceChange: (audience: Gender) => void;
 }
 
-const IMAGE_BASE = "/images/service";
-
-function getServiceImage(category: Category, audience: Gender) {
-    return `${IMAGE_BASE}/${category.image}-${audience}.jpg`;
-}
-
-function getServicePrice(service: Service) {
-    const price = formatPrice(service.price);
-    return service.priceType === "from" ? `From ${price}` : price;
-}
-
-interface ServiceRowProps {
-    service: Service;
-    category: Category;
-    featured?: boolean;
-    audience: Gender;
-}
-
-function ServiceRow({
-    service,
-    category,
-    featured = false,
-    audience
-}: ServiceRowProps) {
+function ServiceRow({ service }: { service: Service }) {
     const message = `Hi, I would like to enquire about ${service.name} at G Cube Salon.`;
 
     return (
-        <article
-            className={`service-row ${featured ? "service-row--featured" : ""}`}
-        >
-            <div className="service-row__image">
-                <img
-                    src={getServiceImage(category, audience)}
-                    alt={`${category.title} at G Cube Salon`}
-                    loading="lazy"
-                />
-            </div>
-
-            <div className="service-row__content">
-                {featured && (
-                    <span className="service-row__featured-label">
-                        Featured
-                    </span>
-                )}
-
-                <h3>{service.name}</h3>
-                <p>{category.title}</p>
+        <li className="service-row">
+            <div className="service-row__info">
+                <p className="service-row__name">{service.name}</p>
 
                 {service.note && (
-                    <span className="service-row__note">
-                        {service.note}
-                    </span>
+                    <p className="service-row__note">{service.note}</p>
                 )}
             </div>
 
-            <div className="service-row__meta">
-                <span className="service-row__meta-label">Duration</span>
-                <span className="service-row__meta-value">
-                    Confirm
+            <p className="service-row__price">
+                {service.priceType === "from" && (
+                    <>
+                        <span className="service-row__from">From</span>{" "}
+                    </>
+                )}
+                <span className="service-row__amount">
+                    {formatPrice(service.price)}
                 </span>
-            </div>
-
-            <div className="service-row__meta service-row__price">
-                <span className="service-row__meta-label">Price</span>
-                <span className="service-row__meta-value">
-                    {getServicePrice(service)}
-                </span>
-            </div>
+            </p>
 
             <a
                 href={whatsappLink(message)}
                 className="service-row__book"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Enquire about ${service.name} on WhatsApp`}
+                aria-label={`Book Now: ${service.name} (opens WhatsApp)`}
             >
                 <span>Book Now</span>
                 <ArrowRight size={16} aria-hidden="true" />
             </a>
-        </article>
+        </li>
     );
 }
 
-export function ServicesBrowser({ audience, onAudienceChange, }: ServicesBrowserProps) {
-
+export function ServicesBrowser({
+    audience,
+    onAudienceChange,
+}: ServicesBrowserProps) {
     const [activeCategory, setActiveCategory] = useState("all");
 
-    const visibleCategories = useMemo(
+    // Everything this audience can see ("all" = same price on both sheets)
+    const audienceServices = useMemo(
         () =>
-            categories.filter((category) =>
-                services.some(
-                    (service) =>
-                        service.categoryId === category.id &&
-                        (service.audience === audience ||
-                            service.audience === "all"),
-                ),
+            services.filter(
+                (service) =>
+                    service.audience === audience ||
+                    service.audience === "all",
             ),
         [audience],
     );
 
-    const filteredServices = useMemo(() =>
-        services.filter(
-            (service) =>
-                (service.audience === audience ||
-                    service.audience === "all") &&
-                (activeCategory === "all" ||
-                    service.categoryId === activeCategory),
-        ),
-        [audience, activeCategory],
+    // Categories that have at least one service for this audience (the tabs)
+    const visibleCategories = useMemo(
+        () =>
+            categories.filter((category) =>
+                audienceServices.some(
+                    (service) => service.categoryId === category.id,
+                ),
+            ),
+        [audienceServices],
     );
 
-    const featuredService = filteredServices[0];
-
-    const featuredCategory = categories.find(
-        (category) => category.id === featuredService?.categoryId,
+    // One group per category; just one group when a tab is selected
+    const groups = useMemo(
+        () =>
+            visibleCategories
+                .filter(
+                    (category) =>
+                        activeCategory === "all" ||
+                        category.id === activeCategory,
+                )
+                .map((category) => ({
+                    category,
+                    items: audienceServices.filter(
+                        (service) => service.categoryId === category.id,
+                    ),
+                })),
+        [visibleCategories, audienceServices, activeCategory],
     );
-
-    const remainingServices = filteredServices.slice(1);
 
     function changeAudience(nextAudience: AudienceTab) {
         onAudienceChange(nextAudience);
@@ -143,7 +106,10 @@ export function ServicesBrowser({ audience, onAudienceChange, }: ServicesBrowser
     }
 
     return (
-        <section className="services-browser" aria-labelledby="services-browser-title">
+        <section
+            className="services-browser"
+            aria-labelledby="services-browser-title"
+        >
             <div className="services-browser__inner">
                 <div className="services-browser__header">
                     <div>
@@ -208,32 +174,28 @@ export function ServicesBrowser({ audience, onAudienceChange, }: ServicesBrowser
                 </div>
 
                 <div className="services-list" aria-live="polite">
-                    {featuredService && featuredCategory ? (
-                        <>
-                            <ServiceRow
-                                service={featuredService}
-                                category={featuredCategory}
-                                featured
-                                audience={audience}
-                            />
+                    {groups.length > 0 ? (
+                        groups.map(({ category, items }) => (
+                            <div className="services-group" key={category.id}>
+                                {activeCategory === "all" && (
+                                    <h3 className="services-group__title">
+                                        {category.title}
+                                    </h3>
+                                )}
 
-                            {remainingServices.map((service) => {
-                                const category = categories.find(
-                                    (item) => item.id === service.categoryId,
-                                );
-
-                                if (!category) return null;
-
-                                return (
-                                    <ServiceRow
-                                        key={service.id}
-                                        service={service}
-                                        category={category}
-                                        audience={audience}
-                                    />
-                                );
-                            })}
-                        </>
+                                <ul
+                                    className="services-group__list"
+                                    role="list"
+                                >
+                                    {items.map((service) => (
+                                        <ServiceRow
+                                            key={service.id}
+                                            service={service}
+                                        />
+                                    ))}
+                                </ul>
+                            </div>
+                        ))
                     ) : (
                         <p className="services-empty">
                             No services are currently listed in this category.

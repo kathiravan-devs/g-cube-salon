@@ -5,7 +5,7 @@ import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 
 import { ServiceHero } from "./ServiceHero";
-import { ServicesBrowser } from "./ServiceSection";
+import { ServicesBrowser } from "./ServiceBrowser";
 
 import "../../styles/buttons.css";
 import "./services.css";
