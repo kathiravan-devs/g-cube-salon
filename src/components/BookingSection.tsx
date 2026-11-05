@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Phone, CalendarDays, ArrowRight } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
 
-import { salon, whatsappLink } from '../../data/salon';
+import { salon, whatsappLink } from '../data/salon';
 import './booking-section.css';
 
 export function BookingSection() {
@@ -33,7 +33,7 @@ export function BookingSection() {
                         aria-label={`Call G Cube Salon at ${salon.phone}`}
                     >
                         <Phone size={18} aria-hidden="true" />
-                        <span>{salon.phone}</span>
+                        <span>Call Now</span>
                     </a>
 
                     <a

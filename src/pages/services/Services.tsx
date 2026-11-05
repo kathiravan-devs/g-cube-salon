@@ -7,6 +7,8 @@ import { Footer } from "../../components/Footer";
 import { ServiceHero } from "./ServiceHero";
 import { ServicesBrowser } from "./ServiceBrowser";
 
+import { BookingSection } from "../../components/BookingSection";
+
 import "../../styles/buttons.css";
 import "./services.css";
 
@@ -29,6 +31,8 @@ export function Services() {
         />
         
       </main>
+
+      <BookingSection />
 
       <Footer />
     </>

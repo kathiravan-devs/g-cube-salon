@@ -32,7 +32,7 @@ export function Header() {
             <div className="header-actions">
                 <a href={salon.phoneHref} className="phone-button" aria-label="Call G Cube Salon">
                     <Phone />
-                    <span>{salon.phone}</span>
+                    <span>Call Now</span>
                 </a>
 
                 <button className="appointment-button" aria-label="Book Appointment">

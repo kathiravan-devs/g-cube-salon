@@ -7,7 +7,7 @@ import { OurServices } from "./ServiceCard";
 import { Stylist } from "./Stylist";
 import { GallerySection } from "./GallerySection";
 import { Reviews } from "./Reviews";
-import { BookingSection } from "./BookingSection";
+import { BookingSection } from "../../components/BookingSection";
 import './home.css';
 
 
