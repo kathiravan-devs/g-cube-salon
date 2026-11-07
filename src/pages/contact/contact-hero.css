@@ -1,0 +1,122 @@
+/* =========================================================
+   CONTACT HERO: first block of the Contact page
+
+   Needs from global.css:  --page-padding, --font-heading, --dark, --dark-rgb,
+                           --white, --text-muted, --line
+   Needs from buttons.css: .btn, .btn-primary, .btn-whatsapp
+
+   Every class starts with .contact-hero. Vite bundles all CSS into one global
+   sheet, so generic names like .hero-title would collide with the home hero.
+
+   Layers, back to front: --dark background, photo (::before), content.
+   ========================================================= */
+
+.contact-hero {
+    --photo-h: clamp(170px, 52vw, 280px); /* phones: height of the photo band above the text */
+
+    position: relative;
+    isolation: isolate; /* keeps the photo layer (z-index -1) inside this section */
+
+    display: flex;
+    align-items: center;
+
+    min-height: clamp(300px, 27vw, 400px);
+    padding: clamp(40px, 6vw, 72px) var(--page-padding);
+
+    background: var(--dark);
+    border-bottom: 1px solid var(--line);
+}
+
+/* Photo: pinned to the right edge, greyscale to match the palette.
+   Its left edge fades into the page colour, so there is no seam and the text
+   always sits on near-black. Delete the filter line to keep the photo in colour. */
+.contact-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    z-index: -1;
+
+    width: min(60%, 920px);
+
+    background: url("../../assets/images/hero/about-booking-hero.png") right 70% / cover no-repeat;
+    filter: grayscale(1) contrast(1.05) brightness(0.9);
+
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 40%);
+}
+
+/* ---------- Content ---------- */
+
+.contact-hero-content {
+    width: min(100%, 44rem);
+}
+
+.contact-hero-title {
+    margin: 0;
+
+    font-family: var(--font-heading);
+    color: var(--white);
+    font-size: clamp(2.25rem, 1.35rem + 3.6vw, 4.25rem);
+    font-weight: 600;
+    line-height: 1.02;
+    text-wrap: balance;
+}
+
+.contact-hero-lead {
+    max-width: 44ch;
+    margin: 16px 0 28px;
+
+    color: var(--text-subtle);
+    font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+    line-height: 1.6;
+    text-wrap: balance;
+}
+
+.contact-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 14px;
+}
+
+/* =========================================================
+   PHONE AND SMALL TABLET (under 800px)
+   Photo becomes a band above the text and fades out downward,
+   so the buttons stay near the top of the first screen.
+   ========================================================= */
+
+@media (max-width: 799px) {
+    .contact-hero {
+        align-items: flex-end;
+        min-height: 0;
+        padding-top: var(--photo-h);
+        padding-bottom: 36px;
+    }
+
+    .contact-hero::before {
+        inset: 0 0 auto 0;
+        width: auto;
+        height: var(--photo-h);
+
+        background-position: 80% center;
+
+        -webkit-mask-image: linear-gradient(180deg, #000 40%, transparent 100%);
+                mask-image: linear-gradient(180deg, #000 40%, transparent 100%);
+    }
+
+    .contact-hero-content {
+        width: 100%;
+    }
+
+}
+
+/* =========================================================
+   PHONE (under 600px)
+   The two buttons share one row, each taking half. When they no longer fit
+   side by side (about 330px and below) they stack at full width.
+   ========================================================= */
+
+@media (max-width: 599px) {
+    .contact-hero-actions .btn {
+        flex: 1 1 0;
+    }
+}

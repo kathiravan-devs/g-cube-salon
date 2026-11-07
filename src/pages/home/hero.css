@@ -10,7 +10,7 @@
     align-items: center;
     min-height: clamp(460px, 68vh, 680px);
     padding: clamp(48px, 7vw, 88px) var(--page-padding);
-    background: var(--dark) url("../../assets/hero.png") center right / cover no-repeat;
+    background: var(--dark) url("../../assets/images/hero/hero.png") center right / cover no-repeat;
 }
 
 .hero::before {
@@ -134,7 +134,7 @@
         align-items: flex-end;
         padding-top: 70px;
         padding-bottom: 36px;
-        background: var(--dark) url("../../assets/hero-mobile.png") center right / cover no-repeat;
+        background: var(--dark) url("../../assets/images/hero/hero-mobile.png") center right / cover no-repeat;
         background-position: 0% top;
     }
 
