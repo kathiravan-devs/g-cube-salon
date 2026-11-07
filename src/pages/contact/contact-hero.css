@@ -38,7 +38,7 @@
 
     width: min(60%, 920px);
 
-    background: url("../../assets/images/hero/about-booking-hero.png") right 70% / cover no-repeat;
+    background: url("../../assets/images/hero/contact-booking-hero.png") right 70% / cover no-repeat;
     filter: grayscale(1) contrast(1.05) brightness(0.9);
 
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40%);
