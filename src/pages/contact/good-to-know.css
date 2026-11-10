@@ -1,0 +1,219 @@
+
+
+/* ========================================
+   GOOD TO KNOW SECTION
+======================================== */
+
+.good-to-know {
+    width: 100%;
+    padding: 40px var(--page-padding);
+    background: var(--dark);
+    color: var(--white);
+    border-top: 1px solid var(--line);
+}
+
+.good-to-know__container {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+}
+
+/* ---------- Section Header ---------- */
+
+.good-to-know__header {
+    margin-bottom: 42px;
+}
+
+
+.good-to-know__title {
+    margin: 0;
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+/* ---------- Cards Grid ---------- */
+
+.good-to-know__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+/* ---------- Individual Card ---------- */
+
+.good-to-know__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 235px;
+    padding: 32px 24px;
+    text-align: center;
+
+    background: var(--dark-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.good-to-know__card:hover {
+    transform: translateY(-5px);
+    background: #1b1b1b;
+    border-color: var(--line-strong);
+}
+
+/* ---------- Icon ---------- */
+
+.good-to-know__icon {
+    display: grid;
+    place-items: center;
+
+    width: 58px;
+    height: 58px;
+    margin-bottom: 22px;
+
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+}
+
+.good-to-know__icon svg {
+    width: 25px;
+    height: 25px;
+    stroke-width: 1.6;
+}
+
+/* ---------- Card Content ---------- */
+
+.good-to-know__card-title {
+    margin: 0 0 12px;
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.good-to-know__description {
+    max-width: 280px;
+    margin: 0;
+    color: var(--text-subtle);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+    .good-to-know {
+        padding-block: 65px;
+    }
+
+    .good-to-know__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .good-to-know__card {
+        min-height: 220px;
+        padding: 28px 20px;
+    }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+    .good-to-know {
+        padding-block: 52px;
+    }
+
+    .good-to-know__header {
+        margin-bottom: 30px;
+        text-align: left;
+    }
+
+    .good-to-know__header .section-eyebrow {
+        margin-bottom: 10px;
+        font-size: 10px;
+        letter-spacing: 2.5px;
+    }
+
+    .good-to-know__title {
+        max-width: 340px;
+        font-size: clamp(30px, 8vw, 38px);
+    }
+
+    .good-to-know__grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .good-to-know__card {
+        min-height: auto;
+        padding: 24px 20px;
+    }
+
+    .good-to-know__icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+
+    .good-to-know__icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .good-to-know__card-title {
+        margin-bottom: 8px;
+        font-size: 23px;
+    }
+
+    .good-to-know__description {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+}
+
+/* ---------- Small Mobile ---------- */
+
+@media (max-width: 360px) {
+    .good-to-know {
+        padding-inline: 16px;
+    }
+
+    .good-to-know__card {
+        padding: 22px 16px;
+    }
+
+    .good-to-know__title {
+        font-size: 29px;
+    }
+}
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .good-to-know__card {
+        transition: none;
+    }
+
+    .good-to-know__card:hover {
+        transform: none;
+    }
+}

@@ -2,10 +2,12 @@
 
 import { Header } from '../../components/Header';
 import { ContactHero } from './ContactHero';
-import ContactInfoSection from './ContactDetails';
-import { salon, whatsappLink } from '../../data/salon';
-import { services } from '../../data/services';
-import  storefrontImage  from '../../assets/g-cube-store.png'
+import {ContactInfo} from './ContactInfo';
+import { QuickBooking } from './QuickBooking';
+import { GoodToKnow } from './GoodToKnow';
+import { FollowUs } from '../../components/FollowUs';
+import { Footer } from "../../components/Footer";
+
 import './contact-page.css';
 
 export function ContactPage() {
@@ -15,26 +17,11 @@ export function ContactPage() {
         <>
             <Header />
             <ContactHero />
-            <ContactInfoSection
-                phone={salon.phone}
-                phoneHref={salon.phoneHref}
-                whatsappPhone={salon.phone}
-                whatsappLink={whatsappLink}
-                address={salon.address}
-                landmark={salon.landmark}
-                hours={
-                    [
-                        {
-                        days: "Mon - Sun",
-                        time: salon.hours
-                        }
-                    ]
-                }
-                mapEmbedUrl={salon.mapEmbedUrl}
-                mapsUrl={salon.mapsUrl}
-                storefrontImage={storefrontImage}
-                services={services}
-            />
+            <ContactInfo />
+            <QuickBooking />
+            <GoodToKnow />
+            <FollowUs />
+            <Footer />
         </>
     );
 }

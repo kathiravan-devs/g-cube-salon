@@ -1,0 +1,247 @@
+/* =========================================================
+   QUICK BOOKING: builds a WhatsApp message, stores nothing
+
+   Needs from global.css:  --page-padding, --font-heading, --font-body, --dark,
+                           --dark-2, --white, --text-subtle, --accent, --line,
+                           --line-strong
+   Needs from buttons.css: .btn, .btn-primary
+
+   Layout:  phones   one column (Day and Time need the full width to stay readable)
+            640px+   two by two
+            1200px+  all four fields in one row
+   ========================================================= */
+
+.booking {
+    padding: 0 var(--page-padding) clamp(40px, 6vw, 72px);
+}
+
+.booking-panel {
+    display: grid;
+    gap: 24px;
+    padding: clamp(20px, 3vw, 28px);
+
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--dark-2);
+
+    color-scheme: dark; /* native dropdown lists render dark too */
+}
+
+/* ---------- Intro ---------- */
+
+.booking-intro {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.booking-icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+}
+
+.booking-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.booking-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+.booking-lead {
+    margin: 4px 0 0;
+    color: var(--text-subtle);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* ---------- Fields ---------- */
+
+.booking-form {
+    display: grid;
+    gap: 24px;
+}
+
+.booking-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+}
+
+.booking-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.booking-label {
+    color: var(--text-subtle);
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+/* Men / Women: two radio buttons that look like a toggle */
+.booking-segment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    min-height: 48px;
+    padding: 3px;
+
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    background: var(--dark);
+}
+
+.booking-segment label {
+    position: relative;
+    display: block;
+}
+
+/* the real radio covers its label: still focusable, still clickable, just invisible */
+.booking-segment input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.booking-segment span {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    border-radius: 7px;
+
+    color: var(--white);
+    font: 600 0.875rem/1 var(--font-body);
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.booking-segment input:checked + span {
+    background: var(--accent);
+    color: var(--dark);
+}
+
+.booking-segment input:focus-visible + span {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* 16px text stops iOS Safari zooming the page when a select is tapped */
+.booking-select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 44px 0 16px;
+
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    background: var(--dark)
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+        no-repeat right 16px center / 16px;
+
+    color: var(--white);
+    font: 500 1rem/1.2 var(--font-body);
+    text-overflow: ellipsis;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+            appearance: none;
+}
+
+/* "Select service" reads as a placeholder until a real choice is made */
+.booking-select:invalid {
+    color: var(--text-subtle);
+}
+
+.booking-select option,
+.booking-select optgroup {
+    color: var(--white);
+    background: var(--dark-2);
+}
+
+.booking-select optgroup {
+    font-style: normal;
+    font-weight: 600;
+}
+
+.booking-select:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ---------- Footer: note and button ---------- */
+
+.booking-footer {
+    display: flex;
+    flex-direction: column-reverse; /* phones: button first, note under it */
+    gap: 14px;
+}
+
+.booking-note {
+    margin: 0;
+    color: var(--text-subtle);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.booking-send {
+    width: 100%;
+}
+
+/* WhatsApp green is too pale on the white button, so this is the darker brand tone */
+.booking-send svg {
+    color: #128c4a;
+}
+
+@media (hover: hover) {
+    .booking-segment input:not(:checked):hover + span {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media (min-width: 640px) {
+    .booking-fields {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 14px;
+    }
+
+    .booking-footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+    }
+
+    .booking-send {
+        flex: none;
+        width: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .booking-fields {
+        grid-template-columns:
+            minmax(0, 0.8fr) minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .booking-segment span {
+        transition: none;
+    }
+}

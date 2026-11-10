@@ -6,6 +6,7 @@ import { InfoStrip } from "./InfoStrip";
 import { OurServices } from "./ServiceCard";
 import { Stylist } from "./Stylist";
 import { GallerySection } from "./GallerySection";
+import { FollowUs } from "../../components/FollowUs";
 import { Reviews } from "./Reviews";
 import { BookingSection } from "../../components/BookingSection";
 import './home.css';
@@ -21,6 +22,7 @@ export function Home() {
             <OurServices />
             <Stylist />
             <GallerySection />
+            <FollowUs />
             <Reviews />
             <BookingSection />
             <Footer />

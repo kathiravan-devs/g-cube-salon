@@ -1,0 +1,281 @@
+/* =========================================================
+   CONTACT INFO: details row, then map and shop photo
+
+   Needs from global.css:  --page-padding, --dark-2, --white, --text-muted,
+                           --text-subtle, --accent, --line, --line-strong, --whatsapp
+   Needs from buttons.css: .btn, .btn-primary-outline
+
+   Details layout:  phones   one column, hairlines between rows
+                    640px+   two by two
+                    1200px+  four columns with vertical dividers
+   ========================================================= */
+
+
+/* ---------- Details ---------- */
+
+.contact-facts {
+    padding: clamp(16px, 3vw, 28px) var(--page-padding);
+}
+
+.contact-facts-list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.contact-fact {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding-block: 20px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.contact-fact-icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+}
+.contact-fact-icon--whatsapp {
+    border: 1px solid var(--whatsapp);
+}
+.contact-fact-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* green only on the WhatsApp icon */
+.contact-fact-icon--whatsapp svg {
+    color: var(--whatsapp);
+}
+
+.contact-fact-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.contact-fact-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.contact-fact-value {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+
+.contact-fact-note {
+    color: var(--text-subtle);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+a.contact-fact:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 6px;
+}
+
+@media (hover: hover) {
+    a.contact-fact:hover .contact-fact-value {
+        color: var(--white);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+}
+
+/* Phones: one column */
+@media (max-width: 639px) {
+    .contact-facts-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contact-facts-item + .contact-facts-item {
+        border-top: 1px solid var(--line);
+    }
+}
+
+/* Tablets and small laptops: two by two */
+@media (min-width: 640px) and (max-width: 1199px) {
+    .contact-facts-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-facts-item:nth-child(n + 3) {
+        border-top: 1px solid var(--line);
+    }
+
+    .contact-facts-item:nth-child(even) {
+        border-left: 1px solid var(--line);
+    }
+
+    .contact-fact {
+        padding-inline: 28px;
+    }
+
+    .contact-facts-item:nth-child(odd) .contact-fact {
+        padding-left: 0;
+    }
+}
+
+/* Laptops and desktops: four columns, the address gets the widest one */
+@media (min-width: 1200px) {
+    .contact-facts-list {
+        grid-template-columns:
+            minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr);
+    }
+
+    .contact-facts-item + .contact-facts-item {
+        border-left: 1px solid var(--line);
+    }
+
+    .contact-fact {
+        padding-inline: 28px;
+    }
+
+    .contact-facts-item:first-child .contact-fact {
+        padding-left: 0;
+    }
+}
+
+/* ---------- Map and shop photo ---------- */
+
+.contact-place {
+    /* delete this line to keep Google's own colours */
+    /* --map-filter: grayscale(1) contrast(1.05); */
+
+    padding: 0 var(--page-padding) clamp(20px, 3vw, 32px);
+}
+
+.contact-place-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(14px, 2vw, 24px);
+}
+
+.contact-place-map {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--dark-2);
+}
+
+.contact-place-frame {
+    position: relative;
+    flex: 1;
+    min-height: clamp(240px, 32vw, 340px);
+}
+
+.contact-place-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* filter: var(--map-filter); */
+}
+
+/* shown while no map embed URL is set */
+.contact-place-empty {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 10px;
+    padding: 24px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.contact-place-empty svg {
+    width: 28px;
+    height: 28px;
+}
+
+.contact-place-empty p {
+    max-width: 32ch;
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.contact-place-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--line);
+}
+
+.contact-place-caption {
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    color: var(--text-subtle);
+    font-size: 0.8125rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contact-place-bar .btn {
+    flex: none;
+    min-height: 40px;
+    padding: 0 1.1rem;
+}
+
+.contact-place-photo {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--dark-2);
+}
+
+.contact-place-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* phones: no room for the caption, so the button takes the whole bar */
+@media (max-width: 479px) {
+    .contact-place-caption {
+        display: none;
+    }
+
+    .contact-place-bar .btn {
+        width: 100%;
+    }
+}
+
+/* side by side: the photo stretches to the map's height */
+@media (min-width: 800px) {
+    .contact-place-grid--photo {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    }
+
+    .contact-place-photo {
+        aspect-ratio: auto;
+    }
+}
