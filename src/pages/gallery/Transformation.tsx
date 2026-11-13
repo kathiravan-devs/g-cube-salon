@@ -1,10 +1,6 @@
-
 import { useState } from 'react';
-import {
-    ArrowRight,
-    ChevronLeft,
-    ChevronRight
-} from 'lucide-react';import './transformation.css';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import './transformation.css';
 
 export function TransformationSection() {
     const [sliderPosition, setSliderPosition] = useState(50);
@@ -43,6 +39,8 @@ export function TransformationSection() {
                     src="/images/gallery/transformation-after.jpg"
                     alt="Finished salon hairstyle"
                     className="comparison-image after-image"
+                    loading="lazy"
+                    decoding="async"
                 />
 
                 {/* Before Image */}
@@ -56,6 +54,8 @@ export function TransformationSection() {
                         src="/images/gallery/transformation-before.jpg"
                         alt="Original hairstyle before transformation"
                         className="comparison-image"
+                        loading="lazy"
+                        decoding="async"
                     />
                 </div>
 
@@ -74,8 +74,8 @@ export function TransformationSection() {
                     style={{ left: `${sliderPosition}%` }}
                 >
                     <span className="comparison-handle">
-                        <ChevronLeft size={15} />
-                        <ChevronRight size={15} />
+                        <ChevronLeft size={14} />
+                        <ChevronRight size={14} />
                     </span>
                 </div>
 
