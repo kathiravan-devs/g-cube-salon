@@ -1,0 +1,250 @@
+
+/* =========================
+   GALLERY NAVIGATION
+========================= */
+
+.gallery-nav {
+    position: relative;
+    z-index: 100;
+
+    width: 100%;
+    min-height: 76px;
+    padding: 14px clamp(22px, 5.8vw, 62px);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #080808;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Logo */
+
+.gallery-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #fff;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 29px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.logo-subtitle {
+    margin-top: 5px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    letter-spacing: 5px;
+}
+
+/* Desktop Links */
+
+.gallery-nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(22px, 3.5vw, 42px);
+}
+
+.nav-link {
+    position: relative;
+    padding: 10px 0;
+
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #fff;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+
+    width: 0;
+    height: 1px;
+
+    background: #c9a96e;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Book Button */
+
+.nav-book-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 10px 18px;
+
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 8px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.nav-book-btn:hover {
+    color: #080808;
+    background: #fff;
+}
+
+/* Mobile Controls */
+
+.mobile-menu-btn,
+.mobile-nav {
+    display: none;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 850px) {
+
+    .gallery-nav {
+        padding: 14px 25px;
+    }
+
+    .gallery-nav-links {
+        gap: 20px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .logo-name {
+        font-size: 25px;
+    }
+
+    .nav-book-btn {
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .gallery-nav {
+        min-height: 70px;
+        padding: 12px 20px;
+    }
+
+    .gallery-nav-links,
+    .nav-book-btn {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 42px;
+        height: 42px;
+
+        color: #fff;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+
+        cursor: pointer;
+    }
+
+    .mobile-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+        padding: 15px 22px 24px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        background: #0c0c0c;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s ease;
+    }
+
+    .mobile-nav.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .mobile-nav-link {
+        padding: 13px 5px;
+
+        color: rgba(255, 255, 255, 0.8);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .mobile-nav-link.active {
+        color: #c9a96e;
+    }
+
+    .mobile-book-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        margin-top: 12px;
+        padding: 13px;
+
+        color: #080808;
+        background: #fff;
+        border-radius: 6px;
+
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        text-decoration: none;
+    }
+}

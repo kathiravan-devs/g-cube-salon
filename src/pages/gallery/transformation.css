@@ -1,0 +1,354 @@
+
+/* =========================
+   GLOBAL BOX SIZING
+========================= */
+
+.transformation-section,
+.transformation-section * {
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   TRANSFORMATION SECTION
+========================= */
+
+.transformation-section {
+    width: 100%;
+    max-width: 1400px;
+    min-height: 250px;
+
+    margin: 40px auto;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: 34% 66%;
+
+    overflow: hidden;
+
+    background: #111;
+    border: 1px solid var(--accent-dim);
+    border-radius: 15px;
+}
+
+
+/* =========================
+   LEFT CONTENT
+========================= */
+
+.transformation-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding: 35px clamp(22px, 3.7vw, 38px);
+
+    background: linear-gradient(135deg, #171717, #0e0e0e);
+}
+
+
+.transformation-content h2 {
+    margin: 0;
+    color: #fff;
+
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 3.5vw, 40px);
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.transformation-content p {
+    max-width: 280px;
+    margin: 12px 0 20px;
+
+    color: var(--text-muted);
+
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   EXPLORE BUTTON
+========================= */
+
+.explore-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-height: 42px;
+    padding: 10px 17px;
+
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 30px;
+
+    font-family: var(--font-body);
+    font-size: 12px;
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.explore-btn:hover {
+    color: #080808;
+    background: #fff;
+    border-color: #fff;
+}
+
+.explore-btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+}
+
+
+/* =========================
+   IMAGE COMPARISON
+========================= */
+
+.comparison-container {
+    position: relative;
+
+    min-width: 0;
+    min-height: 250px;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    background: #222;
+}
+
+.comparison-image {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 35%;
+}
+
+.after-image {
+    z-index: 0;
+}
+
+.before-image-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    overflow: hidden;
+}
+
+.before-image-wrapper img {
+    object-position: center 35%;
+}
+
+
+/* =========================
+   BEFORE / AFTER LABELS
+========================= */
+
+.comparison-label {
+    position: absolute;
+    top: 18px;
+    z-index: 3;
+
+    padding: 7px 17px;
+
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+
+    font-family: var(--font-body);
+    font-size: 12px;
+}
+
+.before-label {
+    left: 22px;
+}
+
+.after-label {
+    right: 22px;
+}
+
+
+/* =========================
+   COMPARISON DIVIDER
+========================= */
+
+.comparison-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+
+    width: 2px;
+
+    background: #fff;
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   DRAG HANDLE
+========================= */
+
+.comparison-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+
+    color: #111;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.comparison-handle svg {
+    width: 14px;
+    height: 14px;
+}
+
+
+/* =========================
+   RANGE INPUT
+========================= */
+
+.comparison-range {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    opacity: 0;
+    cursor: ew-resize;
+    touch-action: pan-y;
+}
+
+.comparison-container:has(.comparison-range:focus-visible) {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+    .transformation-section {
+        grid-template-columns: 38% 62%;
+        min-height: 230px;
+    }
+
+    .transformation-content {
+        padding: 25px 20px;
+    }
+
+    .transformation-content h2 {
+        font-size: 32px;
+    }
+
+    .transformation-content p {
+        font-size: 12px;
+    }
+
+    .comparison-container {
+        min-height: 230px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 550px) {
+    .transformation-section {
+        grid-template-columns: 1fr;
+        border-radius: 12px;
+    }
+
+    .transformation-content {
+        padding: 27px 22px 24px;
+    }
+
+    .transformation-content h2 {
+        font-size: 35px;
+    }
+
+    .transformation-content p {
+        max-width: 320px;
+        margin: 9px 0 16px;
+    }
+
+    .comparison-container {
+        min-height: 240px;
+    }
+
+    .comparison-label {
+        top: 13px;
+        padding: 6px 13px;
+        font-size: 10px;
+    }
+
+    .before-label {
+        left: 13px;
+    }
+
+    .after-label {
+        right: 13px;
+    }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 360px) {
+    .comparison-container {
+        min-height: 200px;
+    }
+
+    .transformation-content h2 {
+        font-size: 31px;
+    }
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .explore-btn {
+        transition: none;
+    }
+}
