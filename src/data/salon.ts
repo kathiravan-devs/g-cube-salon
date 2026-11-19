@@ -1,7 +1,8 @@
 export const salon = {
     name: "G Cube Salon",
     locality: "Thirubuvanam, Kumbakonam",
-    address: "No. 12, East Main Street, Kumbakonam - 612001", // TODO: verify the exact customer-facing address before launch.
+    // Exact street address was a placeholder. Show only the confirmed locality until the owner verifies it.
+    address: "Thirubuvanam, Kumbakonam, Tamil Nadu",
     phone: "+91 84383 28069",
     phoneHref: "tel:+918438328069",
     landmark: "Thirubuvanam Bus Stand",
