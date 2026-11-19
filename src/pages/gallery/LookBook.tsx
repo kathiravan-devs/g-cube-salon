@@ -346,7 +346,7 @@ export default function Lookbook() {
     : "#";
 
   return (
-    <section className="gal" aria-labelledby="gal-t">
+    <section className="gal" id="gallery-grid" aria-labelledby="gal-t">
 
       {/* Header */}
       <header className="head">
