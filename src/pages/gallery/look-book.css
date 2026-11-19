@@ -1,0 +1,518 @@
+/* Lookbook gallery. Reads the site's :root tokens (none are defined here):
+   --font-heading --font-body --dark --dark-rgb --dark-2 --white --text-muted
+   --text-subtle --accent --accent-hover --gold --dark-gold --line --line-strong
+   --whatsapp --page-padding */
+
+.gal {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(56px, 9vw, 112px) var(--page-padding);
+  color: var(--white);
+  background-color: var(--dark-2);
+  font-family: var(--font-body);
+  border-top: 1px solid var(--line);
+}
+
+/* buttons don't inherit the body font by default */
+.gal button,
+.lookbook-dialog button {
+  font-family: inherit;
+}
+
+.head h2 {
+  margin: 0;
+  font: 600 clamp(2.4rem, 6vw, 4rem)/1.05 var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+.head h2 em {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.lede {
+  max-width: 540px;
+  color: var(--text-muted);
+  font-size: clamp(0.92rem, 2vw, 1rem);
+  line-height: 1.7;
+}
+
+/* Filters */
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin: 0 calc(var(--page-padding) * -1) clamp(20px, 3.5vw, 32px);
+  padding: 6px var(--page-padding);
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.filters::-webkit-scrollbar,
+.thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  flex: none;
+  scroll-snap-align: center;
+  padding: 10px 20px;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-subtle);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.chip:hover {
+  border-color: var(--line-strong);
+  color: var(--white);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--dark);
+}
+
+.chip[aria-pressed="true"]:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* Gallery grid */
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(10px, 1.6vw, 18px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid li {
+  min-width: 0;
+  animation: rise 0.5s both;
+  animation-delay: calc(var(--d) * 55ms);
+}
+
+.tile {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.08;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--dark-2);
+  cursor: zoom-in;
+  isolation: isolate;
+}
+
+.tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: box-shadow 0.3s;
+  pointer-events: none;
+}
+
+.cap {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  gap: 2px;
+  padding: 36px 12px 12px;
+  text-align: left;
+  color: var(--white);
+  background: linear-gradient(to top, rgba(var(--dark-rgb), 0.92), transparent);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.cap b {
+  font: 700 clamp(1rem, 3vw, 1.2rem)/1.2 var(--font-heading);
+}
+
+.cap small {
+  color: var(--gold);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) {
+  .cap {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .tile:hover .cap,
+  .tile:focus-visible .cap {
+    opacity: 1;
+    transform: none;
+  }
+
+  .tile:hover img {
+    transform: scale(1.06);
+  }
+
+  .tile:hover::after {
+    box-shadow: inset 0 0 0 2px var(--gold);
+  }
+}
+
+/* Load more + Book this Look */
+
+.more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.count {
+  margin: 0;
+  color: var(--text-subtle);
+  font-size: 0.85rem;
+}
+
+.btn-more,
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 30px;
+  border-radius: 99px;
+  border: 1.5px solid var(--gold);
+  background: transparent;
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.btn-more:hover,
+.cta:hover {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+.btn-more:active,
+.cta:active {
+  background: var(--dark-gold);
+  border-color: var(--dark-gold);
+}
+
+/* brand green on the icon only; dark on hover so it stays visible on gold */
+.cta svg {
+  color: var(--whatsapp);
+}
+
+.cta:hover svg {
+  color: inherit;
+}
+
+/* Lightbox */
+
+.lookbook-dialog {
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--dark-2);
+  color: var(--white);
+  font-family: var(--font-body);
+  width: min(920px, 94vw);
+  height: min(540px, 90dvh);
+  max-width: none;
+  max-height: none;
+}
+
+.lookbook-dialog[open] {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  animation: pop 0.3s ease;
+}
+
+/* fallback: older browsers don't pass :root variables to ::backdrop */
+.lookbook-dialog::backdrop {
+  background: rgba(var(--dark-rgb, 8, 8, 8), 0.86);
+  backdrop-filter: blur(6px);
+}
+
+.lb-media {
+  position: relative;
+  min-height: 0;
+  background: var(--dark);
+  touch-action: pan-y;
+}
+
+.lb-media > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fade 0.35s;
+}
+
+.nav {
+  position: absolute;
+  top: calc(50% - 40px);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: rgba(var(--dark-rgb), 0.55);
+  color: var(--white);
+  backdrop-filter: blur(6px);
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.nav:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.prev { left: 14px; }
+.next { right: 14px; }
+
+.thumbs {
+  position: absolute;
+  z-index: 2;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-radius: 12px;
+  background: rgba(var(--dark-rgb), 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.thumbs button {
+  flex: none;
+  width: 54px;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0.6;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.thumbs button[aria-current="true"] {
+  border-color: var(--gold);
+  opacity: 1;
+}
+
+.thumbs img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lb-top {
+  position: absolute;
+  z-index: 4;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.x {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.x:hover {
+  background: var(--line);
+}
+
+.lb-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  padding: clamp(24px, 4vw, 44px);
+  overflow: auto;
+}
+
+.lb-info h3 {
+  margin: 0;
+  font: 600 clamp(1.9rem, 3.4vw, 2.6rem)/1.1 var(--font-heading);
+}
+
+.lb-info p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.lb-info hr {
+  width: 44px;
+  margin: 10px 0 14px;
+  border: 0;
+  border-top: 1px solid var(--dark-gold);
+}
+
+/* Responsive */
+
+@media (min-width: 760px) {
+  .filters {
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1080px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 719px) {
+  .lookbook-dialog {
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .lookbook-dialog[open] {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .lb-top {
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    padding: 3px 4px 3px 14px;
+    border-radius: 99px;
+    background: rgba(var(--dark-rgb), 0.6);
+    color: var(--white);
+    backdrop-filter: blur(6px);
+  }
+
+  .lb-info {
+    padding: 20px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .cta {
+    width: 100%;
+  }
+
+  .nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .thumbs button {
+    width: 46px;
+  }
+}
+
+/* Needed by the lightbox/Load More script */
+
+.btn-more[hidden] {
+  display: none;
+}
+
+html.lock {
+  overflow: hidden;
+}
+
+.gal :focus-visible,
+.lookbook-dialog :focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Animations */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gal *,
+  .gal *::before,
+  .gal *::after,
+  .lookbook-dialog,
+  .lookbook-dialog * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

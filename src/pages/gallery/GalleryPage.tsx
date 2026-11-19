@@ -2,8 +2,9 @@
 import { Header } from '../../components/Header';
 import { GalleryHero } from './GalleryHero';
 import { Footer } from '../../components/Footer';
-import './gallery-page.css';
 import { TransformationSection } from './Transformation';
+import Lookbook from './LookBook';
+import './gallery-page.css';
 
 export function Gallery() {
     return(
@@ -11,6 +12,7 @@ export function Gallery() {
             <Header />
             <GalleryHero />
             <TransformationSection />
+            <Lookbook />
             <Footer />
         </>
     );
