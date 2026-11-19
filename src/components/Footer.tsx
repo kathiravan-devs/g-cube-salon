@@ -3,7 +3,6 @@ import { Phone, MapPin, Clock } from "lucide-react";
 import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
 import { categories } from "../data/services";
 import { salon, whatsappLink } from "../data/salon";
-import logo from "/logo/logo.png";
 import "./footer.css";
 
 const quickLinks = [
@@ -25,7 +24,7 @@ export function Footer() {
       <div className="footer-main">
         <div className="footer-brand">
           <Link to="/" className="footer-logo">
-            <img src={logo} alt="G Cube Salon" />
+            <img src="/logo/logo.png" alt="G Cube Salon" />
             <span className="brand-name">G CUBE SALON</span>
           </Link>
           <p className="footer-tagline">Hair, skin and grooming for men and women.</p>
