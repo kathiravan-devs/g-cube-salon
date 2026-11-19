@@ -7,7 +7,7 @@
   align-items: center;
   padding: 80px 5.5%;
 
-  background-image: url('./images/about/about-hero.png');
+  background-image: url('../../../public/images/about/about-hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
