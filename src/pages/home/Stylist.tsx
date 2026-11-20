@@ -28,7 +28,7 @@ export function Stylist() {
                 </div>
 
                 <div className="stylist-info">
-                    <h3 className="stylist-name">Tamil Selvan</h3>
+                    <h3 className="stylist-name">Gautham</h3>
 
                     <div className="stylist-description">
                         <p>
