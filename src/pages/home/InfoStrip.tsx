@@ -15,12 +15,13 @@ export function InfoStrip() {
                     </div>
                 </a>
 
-                <div className="info-item">
+                <a className="info-item" href={salon.mapsUrl} target="_blank">
                     <MapPin aria-hidden="true" />
                     <div className="info-text">
                         <span className="info-title">{salon.address}</span>
+                        <span className="info-subtitle">Tap to open</span>
                     </div>
-                </div>
+                </a>
 
                 <div className="info-item">
                     <Clock aria-hidden="true" />

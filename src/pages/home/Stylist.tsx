@@ -20,7 +20,7 @@ export function Stylist() {
             <div className="stylist-content">
                 <div className="stylist-image">
                     <img
-                        src="/images/sample-barber.jpg"
+                        src="/images/stylist.png"
                         alt="Tamil Selvan, stylist at G Cube Salon"
                         loading="lazy"
                         decoding="async"
@@ -32,7 +32,7 @@ export function Stylist() {
 
                     <div className="stylist-description">
                         <p>
-                            Meet Tamil Selvan, the stylist behind G Cube Salon.
+                            Meet Gautham, the stylist behind G Cube Salon.
                             Whether you're looking for a fresh haircut or a new
                             style, the focus is on helping you find a look that
                             suits your preferences.
@@ -47,7 +47,7 @@ export function Stylist() {
                     </div>
 
                     <p className="stylist-experience">
-                        <span className="experience-number">6+</span>
+                        <span className="experience-number">17+</span>
                         <span>Years of experience</span>
                     </p>
 
