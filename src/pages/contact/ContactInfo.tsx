@@ -1,7 +1,6 @@
 import type { ElementType } from "react";
 import { Clock, ExternalLink, MapPin, Phone } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
-import { salon, whatsappLink } from "../../data/salon";
+import { salon } from "../../data/salon";
 import "./contact-info.css";
 
 // The shop-front photo is optional: the tile appears only while this file exists.
@@ -24,14 +23,6 @@ interface Fact {
 
 const facts: Fact[] = [
     { id: "phone", label: "Phone", value: salon.phone, note: "Tap to call", href: salon.phoneHref, Icon: Phone },
-    {
-        id: "whatsapp",
-        label: "WhatsApp",
-        value: salon.phone,
-        note: "Chat with us",
-        href: whatsappLink("Hi, I would like to book an appointment"),
-        Icon: FaWhatsapp,
-    },
     {
         id: "address",
         label: "Address",
