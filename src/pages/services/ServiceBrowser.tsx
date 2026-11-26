@@ -42,8 +42,6 @@ function ServiceRow({ service }: { service: Service }) {
             <a
                 href={salon.phoneHref}
                 className="service-row__book"
-                target="_blank"
-                rel="noopener noreferrer"
                 aria-label={`Call to enquire about ${service.name}`}
             >
                 <span>Call to Enquire</span>
