@@ -5,6 +5,7 @@ import { Services } from './pages/services/Services';
 import { ContactPage } from './pages/contact/ContactPage';
 import { Gallery } from './pages/gallery/GalleryPage';
 import { AboutPage } from './pages/about/AboutPage';
+import ScrollToTop from './components/ScrollToTop'
 import { BookingUnavailable } from './pages/booking/BookingUnavailable';
 
 
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <Routes>
         <Route index element={<Home />} />
         <Route path="services" element={<Services />} />
