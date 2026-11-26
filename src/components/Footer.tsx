@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Phone, MapPin, Clock } from "lucide-react";
-import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 import { categories } from "../data/services";
-import { salon, whatsappLink } from "../data/salon";
+import { salon } from "../data/salon";
 import logo from "/logo/logo.png"; // same file the Header uses
 import "./footer.css";
 
@@ -92,15 +92,6 @@ export function Footer() {
                             <span>{salon.phone}</span>
                         </a>
 
-                        <a
-                            className="footer-contact-item"
-                            href={whatsappLink("Hi, I would like to book an appointment")}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <FaWhatsapp className="footer-whatsapp" aria-hidden="true" />
-                            <span>Message us on WhatsApp</span>
-                        </a>
 
                         <a
                             className="footer-contact-item"
