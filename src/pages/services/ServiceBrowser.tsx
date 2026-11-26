@@ -7,7 +7,7 @@ import {
     type AudienceTab,
     type Service,
 } from "../../data/services";
-import { whatsappLink } from "../../data/salon";
+import { salon } from "../../data/salon";
 import type { Gender } from "./Services";
 import "./service-browser.css";
 
@@ -17,7 +17,6 @@ interface ServicesBrowserProps {
 }
 
 function ServiceRow({ service }: { service: Service }) {
-    const message = `Hi, I would like to enquire about ${service.name} at G Cube Salon.`;
 
     return (
         <li className="service-row">
@@ -41,13 +40,13 @@ function ServiceRow({ service }: { service: Service }) {
             </p>
 
             <a
-                href={whatsappLink(message)}
+                href={salon.phoneHref}
                 className="service-row__book"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Book Now: ${service.name} (opens WhatsApp)`}
+                aria-label={`Call to enquire about ${service.name}`}
             >
-                <span>Book Now</span>
+                <span>Call to Enquire</span>
                 <ArrowRight size={16} aria-hidden="true" />
             </a>
         </li>
